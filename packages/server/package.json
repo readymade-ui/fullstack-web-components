@@ -1,0 +1,50 @@
+{
+  "name": "@in/server",
+  "version": "0.0.1",
+  "description": "Backend server for in app",
+  "main": "dist/bundles/index.js",
+  "license": "MIT",
+  "type": "module",
+  "exports": "./index.js",
+  "engines": {
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rimraf dist node_modules",
+    "build": "yarn clean && make-dir dist && tsc -p tsconfig.json",
+    "prepublishOnly": "copyfiles package.json dist",
+    "dev": "nodemon --watch \"src/**\" --ext \"ts,json\" --ignore \"src/**/*.spec.ts\" --exec \"node --loader ts-node/esm src/index.ts\"",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "chalk": "^4.1.2",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "express-validator": "^6.12.1",
+    "https": "^1.0.0",
+    "lowdb": "^2.1.0",
+    "node-fetch": "^2.6.1",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^13.0.2",
+    "@rollup/plugin-typescript": "^8.2.3",
+    "@types/node": "^16.4.9",
+    "@types/node-fetch": "^2.5.12",
+    "copyfiles": "^2.4.1",
+    "make-dir-cli": "^3.0.0",
+    "nodemon": "^2.0.12",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.53.2",
+    "ts-node": "^10.1.0",
+    "typescript": "4.5.0-dev.20210922"
+  }
+}

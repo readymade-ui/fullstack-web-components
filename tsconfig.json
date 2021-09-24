@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "baseUrl": "./",
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "module": "ES2015",
+    "target": "ES2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "dom",
+      "dom.iterable"
+    ],
+    "types": [
+      "@types/node"
+    ]
+  },
+  "include": [
+    "./packages/**/*.ts",
+  ],
+  "exclude": [
+    "./packages/client/",
+    "./packages/server/"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "name": "@in/style",
+  "version": "0.0.1",
+  "description": "Global CSS for the produce",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rimraf dist node_modules",
+    "copy:static": "make-dir dist/font && copyfiles -f font dist/font",
+    "build": "yarn clean && make-dir dist && postcss -o dist/style.css style.css && yarn copy:static",
+    "prepublishOnly": "copyfiles package.json dist"
+  },
+  "keywords": [
+    "style",
+    "css",
+    "css variables"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "copyfiles": "^2.4.1",
+    "make-dir-cli": "^3.0.0",
+    "postcss": "^8.3.5",
+    "postcss-cli": "^8.0.0",
+    "postcss-csso": "^5.0.1",
+    "rimraf": "^3.0.2"
+  }
+}

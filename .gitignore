@@ -1,0 +1,8 @@
+node_modules
+.DS_Store
+yarn-error.log
+lerna-debug.log
+cypress/screenshots
+cypress/videos
+packages/**/dist
+__diff_output__

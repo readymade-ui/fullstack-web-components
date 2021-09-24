@@ -1,0 +1,131 @@
+<!-- Initial Dialog in Dialog.stories.js -->
+<template data-template-id="dialog-hello">
+  <in-card>
+    <div slot="action">
+      <button class="icon icon-close dialog-close-button" is="in-button">
+        <i class="fas fa-plus"></i>
+      </button>
+    </div>
+    <div slot="header">
+      <h4>Hello</h4>
+    </div>
+    <div slot="content">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.
+      </p>
+    </div>
+    <in-dialog
+      variant="modal"
+      target="[data-dialog-id='dialog-more-info-target']"
+      template="[data-template-id='dialog-more-info']"
+    ></in-dialog>
+    <div class="button-bar" slot="footer">
+      <button
+        data-dialog-id="dialog-more-info-target"
+        class="secondary"
+        is="in-button"
+      >
+        More Info
+      </button>
+    </div>
+  </in-card>
+</template>
+
+<!-- Second Dialog in Dialog.stories.js -->
+<template data-template-id="dialog-more-info">
+  <in-card>
+    <div slot="header">
+      <h4>More Info</h4>
+    </div>
+    <div slot="content">
+      <in-dialog
+        variant="tooltip"
+        target="[data-dialog-id='tooltip-help-target']"
+        template="[data-template-id='tooltip-help']"
+      ></in-dialog>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        <span data-dialog-id="tooltip-help-target">(?)</span>
+      </p>
+    </div>
+    <div class="button-bar" slot="footer">
+      <button class="secondary dialog-close-button" is="in-button">
+        Close
+      </button>
+    </div>
+  </in-card>
+</template>
+
+<!-- Third Dialog in Dialog.stories.js -->
+<template data-template-id="tooltip-help">
+  <in-card>
+    <div slot="header">
+      <h5>Help</h5>
+    </div>
+    <div slot="content">
+      <p class="caption">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      </p>
+    </div>
+  </in-card>
+</template>
+
+<!-- Add Button, used in TableCard and Table -->
+<template data-template-id="button-add">
+  <button class="icon icon-add button-add" is="in-button">
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      data-prefix="fas"
+      data-icon="plus"
+      class="svg-inline--fa fa-plus fa-w-14"
+      role="img"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 448 512"
+    >
+      <path
+        fill="currentColor"
+        d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+      ></path>
+    </svg>
+  </button>
+</template>
+
+<!-- Delete Button, used in Table -->
+<template data-template-id="button-delete">
+  <button class="icon icon-trash" is="in-button">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+      <path
+        fill="currentColor"
+        d="M268 416h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12zM432 80h-82.41l-34-56.7A48 48 0 0 0 274.41 0H173.59a48 48 0 0 0-41.16 23.3L98.41 80H16A16 16 0 0 0 0 96v16a16 16 0 0 0 16 16h16v336a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128h16a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16zM171.84 50.91A6 6 0 0 1 177 48h94a6 6 0 0 1 5.15 2.91L293.61 80H154.39zM368 464H80V128h288zm-212-48h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12z"
+      />
+    </svg>
+  </button>
+</template>
+
+<!-- Comment Button, used in Table -->
+<template data-template-id="button-comment">
+  <button class="icon icon-comment" is="in-button">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+      <path
+        fill="currentColor"
+        d="M256 32C114.6 32 0 125.1 0 240c0 47.6 19.9 91.2 52.9 126.3C38 405.7 7 439.1 6.5 439.5c-6.6 7-8.4 17.2-4.6 26S14.4 480 24 480c61.5 0 110-25.7 139.1-46.3C192 442.8 223.2 448 256 448c141.4 0 256-93.1 256-208S397.4 32 256 32zm0 368c-26.7 0-53.1-4.1-78.4-12.1l-22.7-7.2-19.5 13.8c-14.3 10.1-33.9 21.4-57.5 29 7.3-12.1 14.4-25.7 19.9-40.2l10.6-28.1-20.6-21.8C69.7 314.1 48 282.2 48 240c0-88.2 93.3-160 208-160s208 71.8 208 160-93.3 160-208 160z"
+      />
+    </svg>
+  </button>
+</template>
+
+<!-- Share Button, used in Table -->
+<template data-template-id="button-share">
+  <button class="icon icon-comment" is="in-button">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+      <path
+        fill="currentColor"
+        d="M503.691 189.836L327.687 37.851C312.281 24.546 288 35.347 288 56.015v80.053C127.371 137.907 0 170.1 0 322.326c0 61.441 39.581 122.309 83.333 154.132 13.653 9.931 33.111-2.533 28.077-18.631C66.066 312.814 132.917 274.316 288 272.085V360c0 20.7 24.3 31.453 39.687 18.164l176.004-152c11.071-9.562 11.086-26.753 0-36.328z"
+      />
+    </svg>
+  </button>
+</template>

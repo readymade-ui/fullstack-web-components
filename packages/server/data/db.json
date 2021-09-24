@@ -1,0 +1,102 @@
+{
+  "users": [
+    {
+      "username": "super",
+      "password": "$2a$10$6D2JGFrOe63snM5MkYJnnuDWbqzBKCtQRDkIKHfBMIA3U5g7CUV0q"
+    }
+  ],
+  "contacts": {
+    "columnData": [
+      {
+        "property": "firstName",
+        "label": "first name",
+        "index": 0,
+        "align": "left"
+      },
+      {
+        "property": "lastName",
+        "label": "last name",
+        "index": 1,
+        "align": "left"
+      },
+      {
+        "property": "email",
+        "label": "email address",
+        "index": 2,
+        "align": "left"
+      },
+      {
+        "property": "postalCode",
+        "label": "postal code",
+        "index": 7,
+        "align": "left"
+      },
+      {
+        "property": "region",
+        "label": "state",
+        "index": 6,
+        "align": "left"
+      },
+      {
+        "property": "city",
+        "label": "city",
+        "index": 5,
+        "align": "left"
+      },
+      {
+        "property": "street",
+        "label": "street",
+        "index": 4,
+        "align": "left"
+      },
+      {
+        "property": "phoneNumber",
+        "label": "phone number",
+        "index": 3,
+        "align": "left"
+      }
+    ],
+    "rowData": [
+      {
+        "email": "joe@gmail.com",
+        "firstName": "Joe",
+        "lastName": "Schmoe",
+        "phoneNumber": "(310) 555 5555",
+        "street": "100 Camino Real",
+        "city": "Los Angeles",
+        "region": "CA",
+        "postalCode": "90277"
+      },
+      {
+        "email": "jane@gmail.com",
+        "firstName": "Jane",
+        "lastName": "Schmoe",
+        "phoneNumber": "(310) 777 7777",
+        "street": "100 Camino Real",
+        "city": "Los Angeles",
+        "region": "CA",
+        "postalCode": "90277"
+      },
+      {
+        "email": "jim@gmail.com",
+        "firstName": "Jim",
+        "lastName": "Schmoe",
+        "phoneNumber": "(310) 444 4444",
+        "street": "100 Camino Real",
+        "city": "Los Angeles",
+        "region": "CA",
+        "postalCode": "90277"
+      },
+      {
+        "email": "jason@gmail.com",
+        "firstName": "Jason",
+        "lastName": "Schmoe",
+        "phoneNumber": "(310) 222 2222",
+        "street": "100 Camino Real",
+        "city": "Los Angeles",
+        "region": "CA",
+        "postalCode": "90277"
+      }
+    ]
+  }
+}
