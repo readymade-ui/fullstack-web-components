@@ -99,6 +99,8 @@ a:visited {
   font-family: var(--font-default);
   font-weight: var(--font-weight-default);
   font-size: var(--font-body-md);
+  text-decoration: none;
+  color: var(--color-blue-500);
 }
 
 a:link.link-button,
