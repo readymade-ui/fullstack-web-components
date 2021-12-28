@@ -8,7 +8,6 @@ import { Component, attachShadow, html, css } from '@in/common';
       border-radius: var(--radius-md);
       box-shadow: var(--shadow);
       overflow: hidden;
-      max-width: 320px;
     }
     ::slotted(*) {
       padding-left: var(--padding-lg);

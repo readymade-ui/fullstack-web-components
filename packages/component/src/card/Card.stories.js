@@ -18,7 +18,7 @@ export default {
   },
 };
 const PrimaryTemplate = ({ image, headline, content, link }) => `
-<in-card>
+<in-card style="max-width: 320px">
   <img slot="header" src="${image}"> 
   <h4 slot="header">${headline}</h4>
   <p slot="content">${content}</p>
