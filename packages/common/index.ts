@@ -6,5 +6,7 @@ export {
   attachTemplate,
   html,
   css,
+  query,
+  queryAll,
 } from './src/template';
 export { Listen } from './src/event';
