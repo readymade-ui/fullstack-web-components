@@ -2,14 +2,15 @@
   "name": "@in/ui",
   "version": "0.0.1",
   "description": "UI library of standard elements",
-  "umd": "dist/bundles/index.js",
   "main": "dist/fesm2015/index.js",
   "types": "dist/types/index.d.ts",
+  "type": "module",
   "scripts": {
+    "analyze": "yarn clean && yarn build && custom-elements-manifest analyze --dev --exclude \"[./**/*.stories.js]\" && node manifest",
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rimraf dist node_modules",
     "build": "yarn clean && make-dir dist && rollup -c rollup.config.js && tsc -p tsconfig.json",
-    "prepublishOnly": "copyfiles package.json dist"
+    "prepublishOnly": "copyfiles package.json dist && node prepublish.js"
   },
   "keywords": [
     "customelements",
@@ -23,6 +24,7 @@
     "@in/common": "^0.0.1"
   },
   "devDependencies": {
+    "@custom-elements-manifest/analyzer": "0.5.7",
     "@rollup/plugin-commonjs": "^20.0.0",
     "@rollup/plugin-node-resolve": "^13.0.2",
     "@rollup/plugin-typescript": "^8.2.3",
@@ -31,5 +33,16 @@
     "rimraf": "^3.0.2",
     "rollup": "^2.53.2",
     "typescript": "4.5.0-dev.20210922"
-  }
+  },
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./types/index.d.ts",
+      "es2015": "./fesm2015/index.js",
+      "default": "./fesm2015/index.js"
+    }
+  },
+  "customElements": "custom-elements.json"
 }

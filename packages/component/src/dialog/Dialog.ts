@@ -7,6 +7,15 @@ declare global {
   }
 }
 
+/**
+ * Controller for rendering a dialog from HTML template.
+ *
+ * `DialogComponent` requires an instance of `DialogStack` to be set on `window.__dialogStack` prior to instantiation. After specifying a `template`, `target`, and `variant` with HTML attributes, `DialogComponent` will display either a modal or tooltip that renders a HTML template.
+ * @tag {string} in-dialog
+ * @attr {string} template - Required, Selector that targets the HTML template, for use with `querySelector`.
+ * @attr {string} target - Selector that targets the HTML element that triggers the dialog on click, for use with `querySelector`, Required
+ * @attr {string} variant - Specifies whether to display a "modal" or "tooltip", Required
+ */
 @Component({
   selector: 'in-dialog',
   style: `

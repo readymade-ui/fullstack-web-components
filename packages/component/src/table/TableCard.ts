@@ -1,5 +1,11 @@
 import { Component, attachShadow, Listen, html, css } from '@in/common';
 
+/**
+ * Renders a `TableComponent` in a stylized card
+ * that displays buttons used for CRUD in the table.
+ * @tag {string} in-tablecard
+ * @attr {string} channel - the name of the channel used to communicate via `BroadcastChannel`, Required
+ */
 @Component({
   selector: 'in-tablecard',
   style: css`

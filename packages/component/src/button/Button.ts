@@ -88,6 +88,14 @@ const buttonStyles = css`
   }
 `;
 
+/**
+ * Customized built-in element that renders a styled button.
+ *
+ * `ButtonComponent` is displayed contextually as one of three variants: primary, secondary or icon. The variant is set using a CSS classname. The label is set via the content of the `HTMLButtonElement`. When displayed as the icon variant, ButtonComponent expects two direct children: `HTMLSVGElement` and `HTMLSpanElement` that displays a label exclusively for screen readers using the `hidden` HTML attribute.
+ * @tag {string} in-button
+ * @attr {string} is - "in-button", Required
+ * @attr {string} class - Variant, can either be "primary" "secondary", or "icon"
+ */
 @Component({
   custom: { extends: 'button' },
   selector: 'in-button',

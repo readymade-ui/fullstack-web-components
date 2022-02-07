@@ -2,6 +2,7 @@ import { html } from 'lit-html';
 import {
   TableCardComponent,
   TableComponent,
+  Column,
   ColumnData,
   TdComponent,
   TrComponent,

@@ -1,6 +1,8 @@
 import { CardComponent } from './Card';
+import { html } from 'lit-html';
 
 export default {
+  component: 'in-card',
   title: 'Components/Card',
   argTypes: {
     image: {
@@ -17,9 +19,10 @@ export default {
     },
   },
 };
-const PrimaryTemplate = ({ image, headline, content, link }) => `
-<in-card style="max-width: 320px">
-  <img slot="header" src="${image}"> 
+const PrimaryTemplate = ({ image, headline, content, link }) => html` <in-card
+  style="max-width: 320px"
+>
+  <img slot="header" src="${image}" />
   <h4 slot="header">${headline}</h4>
   <p slot="content">${content}</p>
   <a href="#" slot="footer">${link}</a>

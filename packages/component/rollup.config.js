@@ -15,17 +15,4 @@ export default [
       sourcemap: true,
     },
   },
-  {
-    input: './index.ts',
-    plugins: [nodeResolve(), typescript()],
-    onwarn: (warning, next) => {
-      if (warning.code === 'THIS_IS_UNDEFINED') return;
-      next(warning);
-    },
-    output: {
-      file: './dist/bundles/index.js',
-      format: 'cjs',
-      sourcemap: true,
-    },
-  },
 ];

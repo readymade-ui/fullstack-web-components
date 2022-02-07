@@ -12,6 +12,12 @@ export interface Column {
 
 export type ColumnData = Column[];
 
+/**
+ * Renders a stylized `HTMLTableElement` that can display read-only or editable.
+ * `TableComponent` is a customized built-in element that renders columns and rows through events dispatched on `BroadcastChannel`.
+ * @attr {string} channel - the name of the channel used to communicate via `BroadcastChannel`, Required
+ * @attr {string} is - "in-table", Required
+ */
 @Component({
   selector: 'in-table',
   custom: { extends: 'table' },
