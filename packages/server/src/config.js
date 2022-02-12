@@ -1,13 +1,6 @@
 const env = process.env.NODE_ENV || 'development';
 
-export interface ServerConfig {
-  env: string;
-  host: string;
-  protocol: string;
-  port: string;
-}
-
-let config: ServerConfig;
+let config;
 
 if (env === 'development') {
   config = {
