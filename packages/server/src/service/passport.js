@@ -2,7 +2,7 @@ import uuid from 'uuid';
 import bcrypt from 'bcryptjs';
 import { join } from 'path';
 import { Strategy } from 'passport-local';
-import { passport } from '../index';
+import { passport } from '../index.js';
 import { db } from '../db/index.js';
 
 function signup(options, res) {

@@ -1,7 +1,6 @@
-import { IRoute } from 'express';
 import { db } from '../db/index.js';
 
-class ContactsController implements IRoute {
+class ContactsController {
   constructor() {}
   get(req, res) {
     const { contacts } = db.data;
