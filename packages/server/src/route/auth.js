@@ -1,10 +1,9 @@
 import bcrypt from 'bcryptjs';
-import { IRoute } from 'express';
 import { validationResult } from 'express-validator';
 import { db } from '../db/index.js';
 import { passport } from '../index.js';
 
-class AuthController implements IRoute {
+class AuthController {
   constructor() {}
   login(req, res, next) {
     passport.authenticate('local', function (err, user, info) {
@@ -43,7 +42,7 @@ class AuthController implements IRoute {
         username,
         password: bcrypt.hashSync(password, salt),
       };
-      db.data.users.push(user);
+      db.data?.users.push(user);
       res.status(200).send(user);
     }
   }
