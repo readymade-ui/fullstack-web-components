@@ -7,7 +7,7 @@
     "outDir": "./dist"
   },
   "include": [
-    "./**/*.ts"
+    "./**/*.js"
   ],
   "exclude": [
     "./**/*.stories.js",
