@@ -3,7 +3,7 @@ import nodeResolve from '@rollup/plugin-node-resolve';
 
 export default [
   {
-    input: './src/index.ts',
+    input: './src/index.js',
     plugins: [nodeResolve(), typescript()],
     onwarn: (warning, next) => {
       if (warning.code === 'THIS_IS_UNDEFINED') return;
@@ -16,7 +16,7 @@ export default [
     },
   },
   {
-    input: './src/config.ts',
+    input: './src/config.js',
     plugins: [nodeResolve(), typescript()],
     onwarn: (warning, next) => {
       if (warning.code === 'THIS_IS_UNDEFINED') return;
