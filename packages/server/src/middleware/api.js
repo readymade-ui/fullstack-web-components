@@ -4,9 +4,9 @@ import { AuthController } from '../route/auth.js';
 import { ContactsController } from '../route/contacts.js';
 import { db } from '../db/index.js';
 
-const apiRouter: express.Router = express.Router();
-const auth: any = new AuthController();
-const contacts: any = new ContactsController();
+const apiRouter = express.Router();
+const auth = new AuthController();
+const contacts = new ContactsController();
 
 apiRouter.get('/contacts', contacts.get);
 apiRouter.post('/contacts', contacts.post);
@@ -36,6 +36,7 @@ apiRouter.post(
     }
   }),
   check('username').custom((value) => {
+    // @ts-ignore
     const { users } = db.data;
     const usernames = users.map((user) => user.username);
     if (usernames.includes(value)) {
