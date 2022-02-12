@@ -15,12 +15,12 @@ import apiRouter from './middleware/api.js';
 import { configurePassport } from './service/passport.js';
 import { config } from './config.js';
 
-const app: express.Application = express();
-const env: string = process.env.NODE_ENV || 'development';
-const port: string = process.env.PORT || config.port || '4443';
-const protocol: string = process.env.PROTOCOL || 'HTTP';
+const app = express();
+const env = process.env.NODE_ENV || 'development';
+const port = process.env.PORT || config.port || '4443';
+const protocol = process.env.PROTOCOL || 'HTTP';
 const corsOptions = env === 'production' ? { origin: `${config.host}` } : {};
-let server: http.Server | https.Server;
+let server;
 
 if (protocol === 'HTTPS') {
   const sslOptions = {
@@ -58,9 +58,6 @@ app.use(
     secret: 'foo',
     saveUninitialized: false,
     resave: true,
-    maxAge: 600000,
-    expires: false,
-    path: '/*',
     cookie: {
       secure: false,
     },
@@ -102,7 +99,7 @@ app.use(
 
 app.use('/api', apiRouter);
 
-server.listen(port, (): void => {
+server.listen(port, () => {
   const addr = `${protocol === 'HTTPS' ? 'https' : 'http'}://localhost:${port}`;
   process.stdout.write(
     `\n [${new Date().toISOString()}] ${chalk.green(
