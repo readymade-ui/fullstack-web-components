@@ -1,24 +1,27 @@
-const { resolve } = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
-const LiveReloadPlugin = require('webpack-livereload-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
+import { resolve } from 'path';
+import HtmlWebpackPlugin  from 'html-webpack-plugin';
+import HtmlWebpackTagsPlugin from 'html-webpack-tags-plugin';
+import LiveReloadPlugin  from 'webpack-livereload-plugin';
+import TerserPlugin  from 'terser-webpack-plugin';
+import PostCSSCSSOPlugin from 'postcss-csso';
 
-const htmlPageNames = ['login', 'dashboard'];
-
-module.exports = (env) => {
+export default async (env) => {
   const environment = env.production ? 'production' : 'development';
   return {
     mode: environment,
     entry: {
-      main: './src/main/main.ts',
-      login: './src/login/login.ts',
-      dashboard: './src/dashboard/dashboard.ts',
+      index: './src/index.ts',
+      main: './src/view/main/main.ts',
+      login: './src/view/login/login.ts',
+      dashboard: './src/view/dashboard/dashboard.ts',
       polyfill: './src/polyfill.ts',
     },
     output: {
       filename: '[name].js',
       path: resolve('./dist'),
+      library: {
+        type: "module",
+      },
     },
     optimization: {
       minimize: true,
@@ -28,51 +31,39 @@ module.exports = (env) => {
         }),
       ],
     },
-    plugins: [
-      new HtmlWebpackPlugin({
-        template: './src/main/index.html',
-        chunks: ['main'],
-        minify: environment === 'production',
-      }),
-    ]
-      .concat(
-        htmlPageNames.map(
-          (name) =>
-            new HtmlWebpackPlugin({
-              template: resolve(`./src/${name}/index.html`),
-              filename: `${name}.html`,
-              chunks: [`${name}`],
-              minify: environment === 'production',
-            })
-        )
-      )
-      .concat(new LiveReloadPlugin({}))
-      .concat(
-        new HtmlWebpackTagsPlugin({
-          tags: ['./polyfill.js', './style.css'].concat(
-            environment === 'development'
-              ? 'http://localhost:35729/livereload.js'
-              : []
-          ),
-          append: true,
-        })
+    plugins: [new HtmlWebpackPlugin({
+      template: './src/index.html',
+      chunks: ['main'],
+      minify: environment === 'production',
+    }), new HtmlWebpackTagsPlugin({
+      tags: ['./polyfill.js', './style.css'].concat(
+        environment === 'development'
+          ? 'http://localhost:35729/livereload.js'
+          : []
       ),
+      append: true,
+    })]
+      .concat(new LiveReloadPlugin({})),
     resolve: {
       extensions: ['.ts', '.js'],
     },
     module: {
       rules: [
         { test: /\.ts?$/, loader: 'ts-loader' },
-        environment === 'production'
-          ? {
-              test: /\.ts?$/,
-              loader: resolve('loader.js'),
-              options: {
-                plugins: [require('postcss-csso')],
-              },
-            }
-          : {},
-      ],
+        // (environment === 'production') && {
+        //   test: /\.ts?$/,
+        //   use: ['./loader.js', 
+        //   { 
+        //     options: {
+        //       plugins: [PostCSSCSSOPlugin],
+        //     }
+        //   }],
+        //   type: 'asset/source',
+        // }
+      ]
+    },
+    experiments: {
+      outputModule: true,
     },
   };
 };
