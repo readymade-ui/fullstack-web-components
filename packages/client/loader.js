@@ -1,8 +1,8 @@
-const { getOptions } = require('loader-utils');
-const minify = require('html-minifier').minify;
-const postcss = require('postcss');
+import { getOptions } from 'loader-utils';
+import { minify } from 'html-minifier';
+import postcss from 'postcss';
 
-module.exports = function (src) {
+export default function (src) {
   const options = getOptions(this);
   const styleRegex = options.styleRegex
     ? options.styleRegex
@@ -17,7 +17,7 @@ module.exports = function (src) {
     ? options.plugins
     : Object.keys(config.plugins)
         .filter((key) => config.plugins[key])
-        .map((key) => require(key));
+        .map((key) => import(key));
 
   const styleMatches = src.match(styleRegex);
   const file = this.resourcePath;
