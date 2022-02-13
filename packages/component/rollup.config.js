@@ -4,7 +4,9 @@ import nodeResolve from '@rollup/plugin-node-resolve';
 export default [
   {
     input: './index.ts',
-    plugins: [nodeResolve(), typescript()],
+    plugins: [nodeResolve(), typescript({
+      exclude: ["**/*.stories.js"]
+    })],
     onwarn: (warning, next) => {
       if (warning.code === 'THIS_IS_UNDEFINED') return;
       next(warning);
