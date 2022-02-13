@@ -4,7 +4,7 @@ import {
   ModalComponent,
   TooltipComponent,
   DialogStack,
-} from './';
+} from './index.ts';
 
 window.__dialogStack = new DialogStack();
 

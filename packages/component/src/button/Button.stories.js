@@ -1,4 +1,4 @@
-import { ButtonComponent } from './Button';
+import { ButtonComponent } from './Button.ts';
 import { html } from 'lit-html';
 
 let icon = null;

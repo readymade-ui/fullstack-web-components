@@ -1,4 +1,4 @@
-import { CardComponent } from './Card';
+import { CardComponent } from './Card.ts';
 import { html } from 'lit-html';
 
 export default {

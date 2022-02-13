@@ -1,5 +1,5 @@
-import { TextInputComponent } from './TextInput';
-import { ButtonComponent } from '../button/Button';
+import { TextInputComponent } from './TextInput.ts';
+import { ButtonComponent } from '../button/Button.ts';
 import { html } from 'lit-html';
 
 export default {

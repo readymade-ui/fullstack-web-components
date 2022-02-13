@@ -6,11 +6,11 @@ import {
   ColumnData,
   TdComponent,
   TrComponent,
-} from './';
-import { TextInputComponent } from '../input/TextInput';
-import { CardComponent } from './../card/Card';
+} from './index.ts';
+import { TextInputComponent } from '../input/TextInput.ts';
+import { CardComponent } from './../card/Card.ts';
 
-const columnData: ColumnData = [
+const columnData = [
   {
     property: 'email',
     label: 'email address',
@@ -90,7 +90,7 @@ const TableContext = {
 };
 
 export default {
-  title: 'Components/Table',
+  title: 'Components/Table Card',
   component: 'in-tablecard',
 };
 
@@ -110,5 +110,3 @@ Primary.args = {
   channelName: 'table:one',
   context: TableContext,
 };
-
-export * from './';

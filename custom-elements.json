@@ -692,7 +692,98 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/dialog/Dialog.stories.ts",
+      "path": "src/card/Card.stories.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "ImageCard"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/card/Card.stories.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "ImageCard",
+          "declaration": {
+            "name": "ImageCard",
+            "module": "src/card/Card.stories.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/card/Card.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Autonomous custom element that renders a card container.\n`CardComponent` displays content in a header, content, footer layout.",
+          "name": "CardComponent",
+          "slots": [
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "displays header elements",
+              "name": "header"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "displays content in between header and footer",
+              "name": "content"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "displays footer elements",
+              "name": "footer"
+            }
+          ],
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "tagName": "in-card",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CardComponent",
+          "declaration": {
+            "name": "CardComponent",
+            "module": "src/card/Card.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/card/index.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CardComponent",
+          "declaration": {
+            "name": "CardComponent",
+            "module": "./Card"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/dialog/Dialog.stories.js",
       "declarations": [
         {
           "kind": "variable",
@@ -704,7 +795,7 @@
           "kind": "js",
           "name": "default",
           "declaration": {
-            "module": "src/dialog/Dialog.stories.ts"
+            "module": "src/dialog/Dialog.stories.js"
           }
         },
         {
@@ -712,7 +803,7 @@
           "name": "Primary",
           "declaration": {
             "name": "Primary",
-            "module": "src/dialog/Dialog.stories.ts"
+            "module": "src/dialog/Dialog.stories.js"
           }
         }
       ]
@@ -1127,97 +1218,6 @@
           "declaration": {
             "name": "TooltipComponent",
             "module": "./Tooltip"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/card/Card.stories.js",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "ImageCard"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/card/Card.stories.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "ImageCard",
-          "declaration": {
-            "name": "ImageCard",
-            "module": "src/card/Card.stories.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/card/Card.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Autonomous custom element that renders a card container.\n`CardComponent` displays content in a header, content, footer layout.",
-          "name": "CardComponent",
-          "slots": [
-            {
-              "type": {
-                "text": "string"
-              },
-              "description": "displays header elements",
-              "name": "header"
-            },
-            {
-              "type": {
-                "text": "string"
-              },
-              "description": "displays content in between header and footer",
-              "name": "content"
-            },
-            {
-              "type": {
-                "text": "string"
-              },
-              "description": "displays footer elements",
-              "name": "footer"
-            }
-          ],
-          "superclass": {
-            "name": "HTMLElement"
-          },
-          "tagName": "in-card",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "CardComponent",
-          "declaration": {
-            "name": "CardComponent",
-            "module": "src/card/Card.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/card/index.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "CardComponent",
-          "declaration": {
-            "name": "CardComponent",
-            "module": "./Card"
           }
         }
       ]
@@ -1666,7 +1666,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/table/Table.stories.ts",
+      "path": "src/table/Table.stories.js",
       "declarations": [
         {
           "kind": "variable",
@@ -1678,7 +1678,7 @@
           "kind": "js",
           "name": "default",
           "declaration": {
-            "module": "src/table/Table.stories.ts"
+            "module": "src/table/Table.stories.js"
           }
         },
         {
@@ -1686,15 +1686,7 @@
           "name": "Primary",
           "declaration": {
             "name": "Primary",
-            "module": "src/table/Table.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "./"
+            "module": "src/table/Table.stories.js"
           }
         }
       ]
@@ -1895,6 +1887,33 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/table/TableCard.stories.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "Primary"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/table/TableCard.stories.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Primary",
+          "declaration": {
+            "name": "Primary",
+            "module": "src/table/TableCard.stories.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/table/TableCard.ts",
       "declarations": [
         {
@@ -1998,6 +2017,33 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/table/Td.stories.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "Primary"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/table/Td.stories.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Primary",
+          "declaration": {
+            "name": "Primary",
+            "module": "src/table/Td.stories.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/table/Td.ts",
       "declarations": [
         {
@@ -2072,6 +2118,33 @@
           "declaration": {
             "name": "TdComponent",
             "module": "src/table/Td.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/table/Tr.stories.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "Primary"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/table/Tr.stories.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Primary",
+          "declaration": {
+            "name": "Primary",
+            "module": "src/table/Tr.stories.js"
           }
         }
       ]
@@ -2465,44 +2538,6 @@
           "declaration": {
             "name": "DialogComponent",
             "module": "dist/types/src/dialog/Dialog.d.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/types/src/dialog/Dialog.stories.d.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "_default",
-          "type": {
-            "text": "{\n    title: string;\n    component: string;\n}"
-          }
-        },
-        {
-          "kind": "variable",
-          "name": "Primary",
-          "type": {
-            "text": "any"
-          }
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "_default",
-            "module": "dist/types/src/dialog/Dialog.stories.d.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Primary",
-          "declaration": {
-            "name": "Primary",
-            "module": "dist/types/src/dialog/Dialog.stories.d.ts"
           }
         }
       ]
@@ -3547,52 +3582,6 @@
           "declaration": {
             "name": "TableComponent",
             "module": "dist/types/src/table/Table.d.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "dist/types/src/table/Table.stories.d.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "_default",
-          "type": {
-            "text": "{\n    title: string;\n    component: string;\n}"
-          }
-        },
-        {
-          "kind": "variable",
-          "name": "Primary",
-          "type": {
-            "text": "any"
-          }
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "_default",
-            "module": "dist/types/src/table/Table.stories.d.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Primary",
-          "declaration": {
-            "name": "Primary",
-            "module": "dist/types/src/table/Table.stories.d.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "./"
           }
         }
       ]
