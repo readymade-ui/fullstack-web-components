@@ -1,5 +1,4 @@
 import { attachShadow, html, css, Component, Listen } from '@in/common';
-import { ButtonComponent } from '@in/ui';
 
 export const styles = css`
   :host {
@@ -27,7 +26,7 @@ export const styles = css`
   }
 `;
 
-export const shadowTemplate = (word: string) => html`
+export const shadowTemplate = () => html`
   <p class="message">
     We use cookies to personalize content and ads, to provide social media
     features and to analyse our traffic.
@@ -41,7 +40,7 @@ export const shadowTemplate = (word: string) => html`
 @Component({
   selector: 'cookie-footer',
   style: styles,
-  template: shadowTemplate('Continue'),
+  template: shadowTemplate(),
 })
 export class CookieFooter extends HTMLElement {
   constructor() {
@@ -82,5 +81,3 @@ export class CookieFooter extends HTMLElement {
     this.updateCookiePermission(true);
   }
 }
-
-export { ButtonComponent };
