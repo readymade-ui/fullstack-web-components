@@ -1,5 +1,5 @@
 import { attachShadow, html, css, Component, Listen } from '@in/common';
-import { buttonStyles, ButtonComponent } from '@in/ui';
+import { buttonStyles } from '@in/ui';
 import resolve from 'es6-template-strings';
 
 export const styles = css`
@@ -28,7 +28,7 @@ export const styles = css`
   }
 `;
 
-export const shadowTemplate = (word: string) => html`
+export const shadowTemplate = html`
   <p class="message">
     We use cookies to personalize content and ads, to provide social media
     features and to analyse our traffic.
@@ -42,7 +42,7 @@ export const shadowTemplate = (word: string) => html`
 @Component({
   selector: 'cookie-footer',
   style: styles,
-  template: shadowTemplate('Continue'),
+  template: shadowTemplate,
 })
 export class CookieFooter extends HTMLElement {
   constructor() {
@@ -91,9 +91,7 @@ export const template = (data?: any) => `
      ${resolve(styles)}
      ${resolve(buttonStyles)}
      </style>
-     ${resolve(shadowTemplate('Continue'))}
+     ${resolve(shadowTemplate)}
   </template>
 </cookie-footer>
 `;
-
-export { ButtonComponent };

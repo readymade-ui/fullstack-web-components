@@ -1,5 +1,5 @@
 import { attachShadow, html, css, Component, Listen } from '@in/common';
-import { buttonStyles, ButtonComponent } from '@in/ui';
+import { buttonStyles } from '@in/ui';
 import resolve from 'es6-template-strings';
 
 export const styles = css`
@@ -103,5 +103,3 @@ export const template = () => `
  </template>
 </app-header>
 `;
-
-export { ButtonComponent };

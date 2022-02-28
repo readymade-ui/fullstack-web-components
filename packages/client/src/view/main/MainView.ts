@@ -177,4 +177,5 @@ export const template = () => `
 </main-view>
 `;
 
+export { ButtonComponent } from '@in/ui';
 export { AppHeader, CookieFooter, Background };
