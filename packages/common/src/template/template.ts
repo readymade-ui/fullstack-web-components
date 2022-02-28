@@ -4,10 +4,18 @@ export function attachTemplate(context: any): void {
   context.appendChild(template.content.cloneNode(true));
 }
 
-export function html(template: TemplateStringsArray): string {
-  return template.toString();
+export function html(template: TemplateStringsArray, ...rest: any): string {
+  let str = '';
+  template.forEach((string, i) => {
+    str += `${string} ${rest[i] || ''}`;
+  });
+  return str;
 }
 
-export function css(template: TemplateStringsArray): string {
-  return template.toString();
+export function css(template: TemplateStringsArray, ...rest: any): string {
+  let str = '';
+  template.forEach((string, i) => {
+    str += `${string} ${rest[i] || ''}`;
+  });
+  return str;
 }
