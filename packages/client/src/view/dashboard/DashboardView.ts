@@ -1,7 +1,6 @@
 // This is the component
 // It handles a template client-side for browsers that can't handle declarative Shadow DOM (Firefox & Safari)
 import { attachShadow, html, css, Component } from '@in/common';
-import { AppHeader } from '../../component/header/Header';
 
 const styles = css`
   #content-root {
@@ -25,12 +24,12 @@ const styles = css`
   }
 `;
 
-const shadowTemplate = `
-<app-header></app-header>
-<div id="content-root">
-  <h1>Contacts</h1>
-  <in-tablecard channel="dashboard-channel"></in-tablecard>
-</div>
+const shadowTemplate = html`
+  <app-header></app-header>
+  <div id="content-root">
+    <h1>Contacts</h1>
+    <in-tablecard channel="dashboard-channel"></in-tablecard>
+  </div>
 `;
 
 @Component({

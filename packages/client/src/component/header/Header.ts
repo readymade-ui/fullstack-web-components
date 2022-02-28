@@ -1,5 +1,4 @@
 import { attachShadow, html, css, Component, Listen } from '@in/common';
-import { ButtonComponent } from '@in/ui';
 
 export const styles = css`
   :host {
@@ -90,5 +89,3 @@ export class AppHeader extends HTMLElement {
     return this.shadowRoot.querySelector('.login-link') as Element;
   }
 }
-
-export { ButtonComponent };

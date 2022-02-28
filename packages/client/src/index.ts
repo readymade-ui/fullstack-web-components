@@ -3,6 +3,7 @@ import { Router } from './router';
 
 const router = new Router('#root', routes);
 
+export { ButtonComponent } from '@in/ui';
 export { Background } from './component/background/Background';
 export { AppHeader } from './component/header/Header';
 export { CookieFooter } from './component/footer/CookieFooter';
