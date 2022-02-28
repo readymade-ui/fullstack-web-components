@@ -1,0 +1,16 @@
+{
+  "extends": "./../../tsconfig.json",
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "module": "ES2020",
+    "outDir": "./dist"
+  },
+  "include": [
+    "./**/*.js"
+  ],
+  "exclude": [
+    "./**/*.stories.js",
+    "./dist"
+  ]
+}
