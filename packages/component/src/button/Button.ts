@@ -1,6 +1,6 @@
 import { attachStyle, Component, css } from '@in/common';
 
-const buttonStyles = css`
+export const buttonStyles = css`
   .in-button.primary {
     background: var(--color-blue-500);
     border: 2px solid var(--color-blue-500);

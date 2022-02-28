@@ -10,6 +10,9 @@ export default async (env) => {
     mode: environment,
     entry: {
       index: './src/index.ts',
+      main: './src/view/main/MainView.ts',
+      login: './src/view/login/LoginView.ts',
+      dashboard: './src/view/dashboard/DashboardView.ts',
       polyfill: './src/polyfill.ts',
       ponyfill: './src/ponyfill.ts',
     },

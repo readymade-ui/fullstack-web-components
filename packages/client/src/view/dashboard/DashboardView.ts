@@ -1,7 +1,11 @@
 // This is the component
 // It handles a template client-side for browsers that can't handle declarative Shadow DOM (Firefox & Safari)
 import { attachShadow, html, css, Component } from '@in/common';
-import { AppHeader } from '../../component/header/Header';
+import resolve from 'es6-template-strings';
+import {
+  AppHeader,
+  template as HeaderTemplate,
+} from '../../component/header/Header';
 
 const styles = css`
   #content-root {
@@ -25,12 +29,14 @@ const styles = css`
   }
 `;
 
-const shadowTemplate = `
-<app-header></app-header>
-<div id="content-root">
+const contentTemplate = html`
   <h1>Contacts</h1>
   <in-tablecard channel="dashboard-channel"></in-tablecard>
-</div>
+`;
+
+const shadowTemplate = html`
+  <app-header></app-header>
+  <div id="content-root">${contentTemplate}</div>
 `;
 
 @Component({
@@ -85,3 +91,20 @@ export class DashboardView extends HTMLElement {
     };
   }
 }
+
+// This is the same template server-side rendered with @lit-labs/ssr
+export const template = () => `
+<dashboard-view>
+  <template shadowroot="open">
+    <style>
+     ${resolve(styles)}
+    </style>
+    ${resolve(HeaderTemplate())}
+    <div id="content-root">
+      ${contentTemplate}
+    </div>
+  </template>
+</dashboard-view>
+`;
+
+export { AppHeader };

@@ -1,7 +1,11 @@
 // This is the component
 // It handles a template client-side for browsers that can't handle declarative Shadow DOM (Firefox & Safari)
 import { attachShadow, css, html, Component, Listen } from '@in/common';
-import { AppHeader } from '../../component/header/Header';
+import resolve from 'es6-template-strings';
+import {
+  AppHeader,
+  template as HeaderTemplate,
+} from '../../component/header/Header';
 
 const styles = css`
   :host {
@@ -51,39 +55,41 @@ const styles = css`
   }
 `;
 
+const contentTemplate = html`
+<in-card style="max-width: 320px">
+<h4 slot="header">Login</h4>
+<form
+  name="foo"
+  slot="content"
+>
+  <fieldset>
+      <legend>Login Form</legend>
+      <label for="username">Username</label>
+      <in-textinput
+        type="text"
+        id="username"
+        name="username"
+        required
+        minlength="5"
+        class="form-control"
+      ></in-textinput>
+      <label for="password">Password</label>
+      <in-textinput
+        type="password"
+        id="password"
+        name="password"
+        required
+        minlength="5"
+        class="form-control"
+      ></in-textinput>
+      <button class="primary submit form-button" is="in-button">Submit</button>
+</form>
+</in-card>
+`;
+
 const shadowTemplate = html`
-<app-header></app-header>
-<div id="content-root">
-  <in-card style="max-width: 320px">
-    <h4 slot="header">Login</h4>
-    <form
-      name="foo"
-      slot="content"
-    >
-      <fieldset>
-          <legend>Login Form</legend>
-          <label for="username">Username</label>
-          <in-textinput
-            type="text"
-            id="username"
-            name="username"
-            required
-            minlength="5"
-            class="form-control"
-          ></in-textinput>
-          <label for="password">Password</label>
-          <in-textinput
-            type="password"
-            id="password"
-            name="password"
-            required
-            minlength="5"
-            class="form-control"
-          ></in-textinput>
-          <button class="primary submit form-button" is="in-button">Submit</button>
-    </form>
-  </in-card>
-</div>
+  <app-header></app-header>
+  <div id="content-root">${contentTemplate}</div>
 `;
 
 @Component({
@@ -204,3 +210,19 @@ export class LoginView extends HTMLElement {
     return this.shadowRoot.querySelector('form');
   }
 }
+
+export const template = () => `
+<login-view>
+  <template shadowroot="open">
+    <style>
+     ${resolve(styles)}
+    </style>
+    ${resolve(HeaderTemplate())}
+    <div id="content-root">
+     ${contentTemplate}
+    </div>
+  </template>
+</login-view>
+`;
+
+export { AppHeader };

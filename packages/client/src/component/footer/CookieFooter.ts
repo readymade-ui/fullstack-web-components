@@ -1,5 +1,6 @@
 import { attachShadow, html, css, Component, Listen } from '@in/common';
-import { ButtonComponent } from '@in/ui';
+import { buttonStyles, ButtonComponent } from '@in/ui';
+import resolve from 'es6-template-strings';
 
 export const styles = css`
   :host {
@@ -82,5 +83,17 @@ export class CookieFooter extends HTMLElement {
     this.updateCookiePermission(true);
   }
 }
+
+export const template = (data?: any) => `
+<cookie-footer>
+  <template shadowroot="open">
+     <style>
+     ${resolve(styles)}
+     ${resolve(buttonStyles)}
+     </style>
+     ${resolve(shadowTemplate('Continue'))}
+  </template>
+</cookie-footer>
+`;
 
 export { ButtonComponent };

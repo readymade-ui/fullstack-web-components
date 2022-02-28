@@ -1,4 +1,4 @@
-export { ButtonComponent } from './src/button';
+export { buttonStyles, ButtonComponent } from './src/button';
 export { CardComponent } from './src/card';
 export {
   DialogComponent,

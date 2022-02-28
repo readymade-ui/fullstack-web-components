@@ -1,10 +1,1 @@
-import { routes } from './routes';
-import { Router } from './router';
-
-const router = new Router('#root', routes);
-
-export { Background } from './component/background/Background';
-export { AppHeader } from './component/header/Header';
-export { CookieFooter } from './component/footer/CookieFooter';
-export { DashboardView, LoginView, MainView } from './view';
-export { routes, router, Router };
+export { routes } from './routes';

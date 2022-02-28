@@ -1,5 +1,6 @@
 import { attachShadow, html, css, Component, Listen } from '@in/common';
-import { ButtonComponent } from '@in/ui';
+import { buttonStyles, ButtonComponent } from '@in/ui';
+import resolve from 'es6-template-strings';
 
 export const styles = css`
   :host {
@@ -90,5 +91,17 @@ export class AppHeader extends HTMLElement {
     return this.shadowRoot.querySelector('.login-link') as Element;
   }
 }
+
+export const template = () => `
+<app-header>
+ <template shadowroot="open">
+   <style>
+   ${resolve(styles)}
+   ${resolve(buttonStyles)}
+   </style>
+ ${resolve(shadowTemplate)}
+ </template>
+</app-header>
+`;
 
 export { ButtonComponent };

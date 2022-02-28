@@ -1,1 +1,1 @@
-export { ButtonComponent } from './Button';
+export { buttonStyles, ButtonComponent } from './Button';

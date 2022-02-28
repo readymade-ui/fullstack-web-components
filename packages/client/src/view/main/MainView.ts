@@ -1,6 +1,16 @@
 // This is the component
 // It handles a template client-side for browsers that can't handle declarative Shadow DOM (Firefox & Safari)
 import { attachShadow, html, css, Component } from '@in/common';
+import resolve from 'es6-template-strings';
+import {
+  AppHeader,
+  template as HeaderTemplate,
+} from '../../component/header/Header';
+import {
+  CookieFooter,
+  template as FooterTemplate,
+} from '../../component/footer/CookieFooter';
+import { Background } from '../../component/background/Background';
 
 const styles = css`
   :host {
@@ -151,3 +161,20 @@ export class MainView extends HTMLElement {
     return this.shadowRoot.querySelector('.dashboard-link');
   }
 }
+
+export const template = () => `
+<main-view>
+  <template shadowroot="open">
+    <style>
+     ${resolve(styles)}
+    </style>
+    ${resolve(HeaderTemplate())}
+    <div id="content-root">
+      ${contentTemplate}
+    </div>
+    ${resolve(FooterTemplate('foo'))}
+  </template>
+</main-view>
+`;
+
+export { AppHeader, CookieFooter, Background };

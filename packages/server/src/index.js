@@ -1,3 +1,7 @@
+import { installShimOnGlobal } from '@in/dom-shim';
+
+installShimOnGlobal();
+
 import chalk from 'chalk';
 import express from 'express';
 import path from 'path';
@@ -11,6 +15,7 @@ import passport from 'passport';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
 
+import ssr from './middleware/ssr.js';
 import apiRouter from './middleware/api.js';
 import { configurePassport } from './service/passport.js';
 import { config } from './config.js';
@@ -84,9 +89,13 @@ app.use(
 
 app.use('/api', apiRouter);
 
-app.get('/*', (req, res) => {
-  res.sendFile(clientPath('index.html'));
-});
+// app.get('/*', (req, res) => {
+//   res.sendFile(clientPath('index.html'));
+// });
+
+app.get('/', ssr);
+app.get('/login', ssr);
+app.get('/dashboard', ssr);
 
 server.listen(port, () => {
   const addr = `${protocol === 'HTTPS' ? 'https' : 'http'}://localhost:${port}`;
