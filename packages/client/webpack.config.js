@@ -39,11 +39,7 @@ export default async (env) => {
         scriptLoading: 'module',
       }),
       new HtmlWebpackTagsPlugin({
-        tags: ['./polyfill.js', './style.css'].concat(
-          environment === 'development'
-            ? 'http://localhost:35729/livereload.js'
-            : []
-        ),
+        tags: ['./polyfill.js', './style.css'],
         append: true,
       }),
     ].concat(new LiveReloadPlugin({})),
