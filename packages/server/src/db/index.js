@@ -7,6 +7,10 @@ const adapter = new JSONFile(file);
 const db = new Low(adapter);
 
 db.read();
-db.data = db.data || { users: [], contacts: { columnData: [], rowData: [] } };
+db.data = db.data || {
+  users: [],
+  contacts: { columnData: [], rowData: [] },
+  cookies: false,
+};
 
 export { db };

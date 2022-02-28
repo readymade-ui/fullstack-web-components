@@ -22,6 +22,10 @@ const protocol = process.env.PROTOCOL || 'HTTP';
 const corsOptions = env === 'production' ? { origin: `${config.host}` } : {};
 let server;
 
+const clientPath = (filename) =>
+  path.resolve(`${process.cwd()}../../client/dist/${filename}`);
+const stylePath = () => path.resolve(`${process.cwd()}../../style/dist`);
+
 if (protocol === 'HTTPS') {
   const sslOptions = {
     key: fs.readFileSync(path.join(process.cwd(), '.config', 'ssl', 'key.pem')),
@@ -66,38 +70,23 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/', (req, res) => {
-  res.sendFile(
-    path.resolve(process.cwd(), '../', 'client', 'dist', 'index.html')
-  );
-});
-
-app.get('/login', (req, res) => {
-  res.sendFile(
-    path.resolve(process.cwd(), '../', 'client', 'dist', 'login.html')
-  );
-});
-
-app.get('/dashboard', (req, res) => {
-  if (!req.user) {
-    res.redirect('/login');
-  }
-  res.sendFile(
-    path.resolve(process.cwd(), '../', 'client', 'dist', 'dashboard.html')
-  );
-});
+app.use(express.static(clientPath('/'), staticOptions));
 
 app.use(
-  express.static(
-    path.resolve(process.cwd(), '../', 'client', 'dist'),
-    staticOptions
-  )
+  '/style',
+  express.static(stylePath(), {
+    dotfiles: 'ignore',
+    extensions: ['ttf'],
+    index: false,
+    redirect: false,
+  })
 );
-// app.use(
-//   express.static(path.resolve(process.cwd(), '../', 'client', 'dist', 'asset'))
-// );
 
 app.use('/api', apiRouter);
+
+app.get('/*', (req, res) => {
+  res.sendFile(clientPath('index.html'));
+});
 
 server.listen(port, () => {
   const addr = `${protocol === 'HTTPS' ? 'https' : 'http'}://localhost:${port}`;
