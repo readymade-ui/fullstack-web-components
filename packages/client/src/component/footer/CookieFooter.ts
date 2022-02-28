@@ -26,7 +26,7 @@ export const styles = css`
   }
 `;
 
-export const shadowTemplate = () => html`
+export const shadowTemplate = html`
   <p class="message">
     We use cookies to personalize content and ads, to provide social media
     features and to analyse our traffic.
@@ -40,7 +40,7 @@ export const shadowTemplate = () => html`
 @Component({
   selector: 'cookie-footer',
   style: styles,
-  template: shadowTemplate(),
+  template: shadowTemplate,
 })
 export class CookieFooter extends HTMLElement {
   constructor() {
