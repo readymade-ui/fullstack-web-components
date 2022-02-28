@@ -1,5 +1,5 @@
 import {
-  ElementInternals,
+  IElementInternals,
   ValidityStateFlags,
 } from 'types/lib.elementInternals';
 import { Component, attachShadow, Listen, html, css } from '@in/common';
@@ -82,8 +82,8 @@ import { validate, Validator } from './validator';
 })
 export class TextInputComponent extends HTMLElement {
   static formAssociated = true;
-  private attachInternals: () => ElementInternals;
-  private internals: ElementInternals;
+  private internals: IElementInternals;
+  public attachInternals: () => IElementInternals;
   public $validator: Validator;
   private $attr = {};
   constructor() {
