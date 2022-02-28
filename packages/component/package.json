@@ -39,9 +39,9 @@
       "default": "./package.json"
     },
     ".": {
-      "types": "./types/index.d.ts",
-      "es2015": "./fesm2015/index.js",
-      "default": "./fesm2015/index.js"
+      "types": "./dist/types/index.d.ts",
+      "es2015": "./dist/fesm2015/index.js",
+      "default": "./dist/fesm2015/index.js"
     }
   },
   "customElements": "custom-elements.json"

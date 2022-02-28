@@ -5,6 +5,9 @@ readFile(resolve('./dist/package.json'), 'utf8', (err, json) => {
   const pkg = JSON.parse(json);
   pkg.main = 'fesm2015/index.js';
   pkg.types = 'types/index.d.ts';
+  pkg.exports['.'].es2015 = './fesm2015/index.js';
+  pkg.exports['.'].default = './fesm2015/index.js';
+  pkg.exports['.'].types = './types/index.d.ts';
   delete pkg.scripts;
   writeFile(
     resolve('./dist/package.json'),
