@@ -1,15 +1,15 @@
 import {
-  ElementInternals,
+  IElementInternals,
   ValidityStateFlags,
 } from 'types/lib.elementInternals';
 import { validate, Validator } from './validator';
 
 export class TextInputComponent extends HTMLElement {
   static formAssociated = true;
-  private attachInternals: () => ElementInternals;
-  private internals: ElementInternals;
-  public $validator: Validator;
   private $attr = {};
+  private internals: IElementInternals;
+  public attachInternals: () => ElementInternals;
+  public $validator: Validator;
   constructor() {
     super();
     const shadowRoot = this.attachShadow({ mode: 'open' });
