@@ -16,7 +16,7 @@ interface ValidityStateFlags {
   valueMissing?: boolean;
 }
 
-interface ElementInternals {
+interface IElementInternals extends ElementInternals {
   /**
    * Returns the form owner of internals's target element.
    */
@@ -64,7 +64,7 @@ interface ElementInternals {
   ): void;
 }
 
-export declare var ElementInternals: {
-  prototype: ElementInternals;
-  new (): ElementInternals;
+export declare var IElementInternals: {
+  prototype: IElementInternals;
+  new (): IElementInternals;
 };
