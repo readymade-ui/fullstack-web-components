@@ -36,5 +36,3 @@ Primary.args = {
   templateSelector: '[data-template-id="dialog-hello"]',
   variant: 'modal',
 };
-
-export { DialogComponent, ModalComponent, TooltipComponent };

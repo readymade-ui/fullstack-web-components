@@ -9,7 +9,7 @@ import {
 import { TextInputComponent } from '../input/TextInput';
 import { CardComponent } from './../card/Card';
 
-const columnData: ColumnData = [
+const columnData = [
   {
     property: 'email',
     label: 'email address',
@@ -109,5 +109,3 @@ Primary.args = {
   channelName: 'table:one',
   context: TableContext,
 };
-
-export * from './';

@@ -46,6 +46,13 @@ class AuthController {
       res.status(200).send(user);
     }
   }
+  session(req, res) {
+    if (!req.session.passport) {
+      res.status(401).send();
+    } else {
+      res.status(200).send();
+    }
+  }
 }
 
 export { AuthController };

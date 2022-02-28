@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rimraf dist node_modules",
-    "copy:static": "mkdir -p dist/font && cp -a ./Lato/. dist/font",
+    "copy:static": "mkdir -p dist/font && cp -a ./font/Lato/. dist/font && mkdir -p dist/asset && cp -a ./asset/. dist/asset",
     "build": "yarn clean && make-dir dist && postcss -o dist/style.css style.css && yarn copy:static",
     "prepublishOnly": "copyfiles package.json dist"
   },
@@ -16,11 +16,11 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "copyfiles": "^2.4.1",
-    "make-dir-cli": "^3.0.0",
-    "postcss": "^8.3.5",
-    "postcss-cli": "^8.0.0",
-    "postcss-csso": "^5.0.1",
-    "rimraf": "^3.0.2"
+    "copyfiles": "2.4.1",
+    "make-dir-cli": "3.0.0",
+    "postcss": "8.3.5",
+    "postcss-cli": "8.0.0",
+    "postcss-csso": "5.0.1",
+    "rimraf": "3.0.2"
   }
 }

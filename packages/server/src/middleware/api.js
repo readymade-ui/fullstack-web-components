@@ -2,15 +2,20 @@ import express from 'express';
 import { check } from 'express-validator';
 import { AuthController } from '../route/auth.js';
 import { ContactsController } from '../route/contacts.js';
+import { CookiesController } from '../route/cookies.js';
 import { db } from '../db/index.js';
 
 const apiRouter = express.Router();
 const auth = new AuthController();
 const contacts = new ContactsController();
+const cookies = new CookiesController();
 
+apiRouter.get('/cookies', cookies.get);
+apiRouter.post('/cookies', cookies.post);
 apiRouter.get('/contacts', contacts.get);
+apiRouter.get('/session', auth.session);
 apiRouter.post('/contacts', contacts.post);
-apiRouter.post('/login', auth.login);
+apiRouter.post('/auth', auth.login);
 apiRouter.post(
   '/signup',
   check('username')
