@@ -6,6 +6,9 @@ import {
   AppHeader,
   template as HeaderTemplate,
 } from '../../component/header/Header';
+import { ContactService } from '../../service/contacts';
+
+const contactService = new ContactService('dashboard-channel');
 
 const styles = css`
   #content-root {
@@ -51,42 +54,17 @@ export class DashboardView extends HTMLElement {
     if (!this.shadowRoot) {
       attachShadow(this);
     }
-    fetch('/api/contacts', {
-      method: 'GET',
-    })
-      .then((res) => {
-        if (res.status === 200) {
-          return res.json();
-        } else {
-          return {
-            columnData: [],
-            rowData: [],
-          };
-        }
-      })
-      .then((json) => {
-        if (json.columnData.length && json.rowData.length) {
-          this.onTableData(json);
-        }
-      });
+    contactService.getContacts().then((model) => {
+      if (model.columnData.length && model.rowData.length) {
+        this.onTableData();
+      }
+    });
   }
-  onTableData(context) {
+  onTableData() {
     const channel = new BroadcastChannel(this.channelName);
-    setTimeout(() => {
-      channel.postMessage({
-        type: 'data',
-        detail: context,
-      });
-    }, 1);
     channel.onmessage = (ev) => {
       if (ev.data.type === 'change') {
-        fetch('/api/contacts', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(ev.data.detail),
-        });
+        contactService.modifyContacts(ev.data.detail);
       }
     };
   }

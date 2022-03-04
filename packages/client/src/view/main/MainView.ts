@@ -12,6 +12,12 @@ import {
 } from '../../component/footer/CookieFooter';
 import { Background } from '../../component/background/Background';
 
+import { SESSION, SessionService } from './../../service/session';
+import { COOKIES, CookieService } from './../../service/cookies';
+
+const sessionService = new SessionService();
+const cookieService = new CookieService();
+
 const styles = css`
   :host {
     display: flex;
@@ -74,44 +80,42 @@ const styles = css`
   }
 `;
 
-const contentTemplate = html`
-  <div
-    is="in-bg"
-    background="/style/asset/timon-studler-BIk2ANMmNz4-unsplash.jpg"
-  >
-    <div class="blurb half right">
-      <h2>Your Last Contact List</h2>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quod eo
-        liquidius faciet, si perspexerit rerum inter eas verborumne sit
-        controversia.
-      </p>
-      <a href="/dashboard" class="cta dashboard-link" hidden>View Contacts</a>
-    </div>
-  </div>
-  <div
-    is="in-bg"
-    background="/style/asset/valiant-made-zBkVp3E2CnE-unsplash.jpg"
-    class="light"
-  >
-    <div class="blurb">
-      <h2>Turn Group Chats Into Live Events</h2>
-      <p>
-        Indicant pueri, in quibus ut in speculis natura cernitur. Itaque ad
-        tempus ad Pisonem omnes. Quis hoc dicit? Philosophi autem in suis
-        lectulis plerumque moriuntur. Videmus in quodam volucrium genere non
-        nulla indicia pietatis, cognitionem, memoriam, in multis etiam desideria
-        videmus. Quid sequatur, quid repugnet, vident. Atqui pugnantibus et
-        contrariis studiis consiliisque semper utens nihil quieti videre, nihil
-        tranquilli potest.
-      </p>
-    </div>
-  </div>
-`;
-
-const shadowTemplate = `
+const shadowTemplate = html`
   <app-header></app-header>
-  <div id="content-root">${contentTemplate}</div>
+  <div id="content-root">
+    <div
+      is="in-bg"
+      background="/style/asset/timon-studler-BIk2ANMmNz4-unsplash.jpg"
+    >
+      <div class="blurb half right">
+        <h2>Your Last Contact List</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quod eo
+          liquidius faciet, si perspexerit rerum inter eas verborumne sit
+          controversia.
+        </p>
+        <a href="/dashboard" class="cta dashboard-link" hidden>View Contacts</a>
+      </div>
+    </div>
+    <div
+      is="in-bg"
+      background="/style/asset/valiant-made-zBkVp3E2CnE-unsplash.jpg"
+      class="light"
+    >
+      <div class="blurb">
+        <h2>Turn Group Chats Into Live Events</h2>
+        <p>
+          Indicant pueri, in quibus ut in speculis natura cernitur. Itaque ad
+          tempus ad Pisonem omnes. Quis hoc dicit? Philosophi autem in suis
+          lectulis plerumque moriuntur. Videmus in quodam volucrium genere non
+          nulla indicia pietatis, cognitionem, memoriam, in multis etiam
+          desideria videmus. Quid sequatur, quid repugnet, vident. Atqui
+          pugnantibus et contrariis studiis consiliisque semper utens nihil
+          quieti videre, nihil tranquilli potest.
+        </p>
+      </div>
+    </div>
+  </div>
   <cookie-footer hidden></cookie-footer>
 `;
 
@@ -126,33 +130,18 @@ export class MainView extends HTMLElement {
     attachShadow(this);
   }
   connectedCallback() {
-    fetch('/api/session', {
-      method: 'GET',
-    }).then((res) => {
-      if (res.status === 200) {
+    sessionService.getSession().then((status) => {
+      if (status.session === SESSION.OPEN) {
         this.$dashboardLink.removeAttribute('hidden');
       }
     });
-
-    fetch('/api/cookies', {
-      method: 'GET',
-    })
-      .then((res) => {
-        if (res.status === 200) {
-          return res.json();
-        } else {
-          return {
-            permission: false,
-          };
-        }
-      })
-      .then((json) => {
-        if (json.permission === true) {
-          this.$cookieFooter.setAttribute('hidden', 'true');
-        } else {
-          this.$cookieFooter.removeAttribute('hidden');
-        }
-      });
+    cookieService.getPermission().then((cookies) => {
+      if (cookies.permission === COOKIES.ACCEPT) {
+        this.$cookieFooter.setAttribute('hidden', 'true');
+      } else {
+        this.$cookieFooter.removeAttribute('hidden');
+      }
+    });
   }
   get $cookieFooter() {
     return this.shadowRoot.querySelector('cookie-footer');
