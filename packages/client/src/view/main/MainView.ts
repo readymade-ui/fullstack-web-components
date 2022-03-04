@@ -80,42 +80,44 @@ const styles = css`
   }
 `;
 
-const shadowTemplate = html`
-  <app-header></app-header>
-  <div id="content-root">
-    <div
-      is="in-bg"
-      background="/style/asset/timon-studler-BIk2ANMmNz4-unsplash.jpg"
-    >
-      <div class="blurb half right">
-        <h2>Your Last Contact List</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quod eo
-          liquidius faciet, si perspexerit rerum inter eas verborumne sit
-          controversia.
-        </p>
-        <a href="/dashboard" class="cta dashboard-link" hidden>View Contacts</a>
-      </div>
-    </div>
-    <div
-      is="in-bg"
-      background="/style/asset/valiant-made-zBkVp3E2CnE-unsplash.jpg"
-      class="light"
-    >
-      <div class="blurb">
-        <h2>Turn Group Chats Into Live Events</h2>
-        <p>
-          Indicant pueri, in quibus ut in speculis natura cernitur. Itaque ad
-          tempus ad Pisonem omnes. Quis hoc dicit? Philosophi autem in suis
-          lectulis plerumque moriuntur. Videmus in quodam volucrium genere non
-          nulla indicia pietatis, cognitionem, memoriam, in multis etiam
-          desideria videmus. Quid sequatur, quid repugnet, vident. Atqui
-          pugnantibus et contrariis studiis consiliisque semper utens nihil
-          quieti videre, nihil tranquilli potest.
-        </p>
-      </div>
+const contentTemplate = html`
+  <div
+    is="in-bg"
+    background="/style/asset/timon-studler-BIk2ANMmNz4-unsplash.jpg"
+  >
+    <div class="blurb half right">
+      <h2>Your Last Contact List</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quod eo
+        liquidius faciet, si perspexerit rerum inter eas verborumne sit
+        controversia.
+      </p>
+      <a href="/dashboard" class="cta dashboard-link" hidden>View Contacts</a>
     </div>
   </div>
+  <div
+    is="in-bg"
+    background="/style/asset/valiant-made-zBkVp3E2CnE-unsplash.jpg"
+    class="light"
+  >
+    <div class="blurb">
+      <h2>Turn Group Chats Into Live Events</h2>
+      <p>
+        Indicant pueri, in quibus ut in speculis natura cernitur. Itaque ad
+        tempus ad Pisonem omnes. Quis hoc dicit? Philosophi autem in suis
+        lectulis plerumque moriuntur. Videmus in quodam volucrium genere non
+        nulla indicia pietatis, cognitionem, memoriam, in multis etiam desideria
+        videmus. Quid sequatur, quid repugnet, vident. Atqui pugnantibus et
+        contrariis studiis consiliisque semper utens nihil quieti videre, nihil
+        tranquilli potest.
+      </p>
+    </div>
+  </div>
+`;
+
+const shadowTemplate = html`
+  <app-header></app-header>
+  <div id="content-root">${contentTemplate}</div>
   <cookie-footer hidden></cookie-footer>
 `;
 
