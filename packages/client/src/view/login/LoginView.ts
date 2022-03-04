@@ -1,7 +1,10 @@
 // This is the component
 // It handles a template client-side for browsers that can't handle declarative Shadow DOM (Firefox & Safari)
 import { attachShadow, css, html, Component, Listen } from '@in/common';
-import { AppHeader } from '../../component/header/Header';
+import { LoginRequest, LoginService } from '../../service/login';
+import { LocationService } from '../../service/location';
+const loginService = new LoginService();
+const locationService = new LocationService();
 
 const styles = css`
   :host {
@@ -146,26 +149,15 @@ export class LoginView extends HTMLElement {
   }
   @Listen('submit')
   onSubmit(): void {
-    const request = {};
+    const request: LoginRequest = { username: '', password: '' };
     Array.from(this.shadowRoot.querySelectorAll('.form-control')).forEach(
       (control: any) => {
         request[control.id] = control.value;
       }
     );
-    fetch('/api/auth', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(request),
-    }).then((res) => {
+    loginService.login(request).then((res) => {
       if (res.status === 200) {
-        window.history.replaceState(
-          {},
-          '',
-          `${window.location.origin}/dashboard`
-        );
-        window.location.replace(`${window.location.origin}/dashboard`);
+        locationService.navigate('dashboard');
       }
     });
   }
