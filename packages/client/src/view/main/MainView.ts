@@ -2,6 +2,12 @@
 // It handles a template client-side for browsers that can't handle declarative Shadow DOM (Firefox & Safari)
 import { attachShadow, html, css, Component } from '@in/common';
 
+import { SESSION, SessionService } from './../../service/session';
+import { COOKIES, CookieService } from './../../service/cookies';
+
+const sessionService = new SessionService();
+const cookieService = new CookieService();
+
 const styles = css`
   :host {
     display: flex;
@@ -114,33 +120,18 @@ export class MainView extends HTMLElement {
     attachShadow(this);
   }
   connectedCallback() {
-    fetch('/api/session', {
-      method: 'GET',
-    }).then((res) => {
-      if (res.status === 200) {
+    sessionService.getSession().then((status) => {
+      if (status.session === SESSION.OPEN) {
         this.$dashboardLink.removeAttribute('hidden');
       }
     });
-
-    fetch('/api/cookies', {
-      method: 'GET',
-    })
-      .then((res) => {
-        if (res.status === 200) {
-          return res.json();
-        } else {
-          return {
-            permission: false,
-          };
-        }
-      })
-      .then((json) => {
-        if (json.permission === true) {
-          this.$cookieFooter.setAttribute('hidden', 'true');
-        } else {
-          this.$cookieFooter.removeAttribute('hidden');
-        }
-      });
+    cookieService.getPermission().then((cookies) => {
+      if (cookies.permission === COOKIES.ACCEPT) {
+        this.$cookieFooter.setAttribute('hidden', 'true');
+      } else {
+        this.$cookieFooter.removeAttribute('hidden');
+      }
+    });
   }
   get $cookieFooter() {
     return this.shadowRoot.querySelector('cookie-footer');
