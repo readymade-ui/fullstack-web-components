@@ -1,4 +1,7 @@
 import { attachShadow, html, css, Component, Listen } from '@in/common';
+import { SESSION, SessionService } from './../../service/session';
+
+const sessionService = new SessionService();
 
 export const styles = css`
   :host {
@@ -72,10 +75,8 @@ export class AppHeader extends HTMLElement {
   }
   connectedCallback() {
     if (!window.location.pathname.includes('login')) {
-      fetch('/api/session', {
-        method: 'GET',
-      }).then((res) => {
-        if (res.status === 401) {
+      sessionService.getSession().then((status) => {
+        if (status.session === SESSION.CLOSED) {
           this.$login.removeAttribute('hidden');
         }
       });
