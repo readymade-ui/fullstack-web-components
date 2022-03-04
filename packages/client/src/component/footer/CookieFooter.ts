@@ -1,6 +1,9 @@
 import { attachShadow, html, css, Component, Listen } from '@in/common';
 import { buttonStyles } from '@in/ui';
 import resolve from 'es6-template-strings';
+import { COOKIES, CookieService } from './../../service/cookies';
+
+const cookieService = new CookieService();
 
 export const styles = css`
   :host {
@@ -49,25 +52,13 @@ export class CookieFooter extends HTMLElement {
     super();
     attachShadow(this);
   }
-  updateCookiePermission(allow: boolean) {
-    fetch('/api/cookies', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ permission: allow }),
-    })
-      .then((res) => {
-        if (res.status === 200) {
-          return res.json();
-        } else {
-          return {
-            permission: false,
-          };
-        }
+  updateCookiePermission(allow: COOKIES.ACCEPT | COOKIES.DECLINE) {
+    cookieService
+      .givePermission({
+        permission: allow,
       })
-      .then((json) => {
-        if (json.permission === true) {
+      .then((cookies) => {
+        if (cookies.permission === COOKIES.ACCEPT) {
           this.setAttribute('hidden', 'true');
         } else {
           this.removeAttribute('hidden');
@@ -76,11 +67,11 @@ export class CookieFooter extends HTMLElement {
   }
   @Listen('click', '.secondary')
   onDenyClick() {
-    this.updateCookiePermission(false);
+    this.updateCookiePermission(COOKIES.DECLINE);
   }
   @Listen('click', '.primary')
   onAllowClick() {
-    this.updateCookiePermission(true);
+    this.updateCookiePermission(COOKIES.ACCEPT);
   }
 }
 
