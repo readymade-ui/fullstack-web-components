@@ -1,7 +1,9 @@
 import { attachShadow, html, css, Component, Listen } from '@in/common';
 import { SESSION, SessionService } from './../../service/session';
+import { LocationService } from '../../service/location';
 
 const sessionService = new SessionService();
+const locationService = new LocationService();
 
 export const styles = css`
   :host {
@@ -84,7 +86,7 @@ export class AppHeader extends HTMLElement {
   }
   @Listen('click', '.icon')
   onLogoClick() {
-    document.location.href = '/';
+    locationService.navigate('');
   }
   get $login(): Element {
     return this.shadowRoot.querySelector('.login-link') as Element;
