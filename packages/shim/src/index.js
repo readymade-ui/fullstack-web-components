@@ -49,5 +49,4 @@ const installShimOnGlobal = (props = {}) => {
   });
 };
 installShimOnGlobal();
-
 export { installShimOnGlobal };

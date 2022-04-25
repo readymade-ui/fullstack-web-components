@@ -93,14 +93,14 @@ export class AppHeader extends HTMLElement {
   }
 }
 
-export const template = () => `
-<app-header>
- <template shadowroot="open">
-   <style>
-   ${resolve(styles)}
-   ${resolve(buttonStyles)}
-   </style>
- ${resolve(shadowTemplate)}
- </template>
-</app-header>
+export const template = () => html`
+  <app-header>
+    <template shadowroot="open">
+      <style>
+        ${resolve(styles)}
+        ${resolve(buttonStyles)}
+      </style>
+      ${resolve(shadowTemplate)}
+    </template>
+  </app-header>
 `;

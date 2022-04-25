@@ -85,4 +85,13 @@ export const template = () => `
 </dashboard-view>
 `;
 
+export {
+  ButtonComponent,
+  CardComponent,
+  TableComponent,
+  TableCardComponent,
+  TrComponent,
+  TdComponent,
+  TextInputComponent,
+} from '@in/ui';
 export { AppHeader };

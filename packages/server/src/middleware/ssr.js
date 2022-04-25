@@ -48,26 +48,24 @@ async function renderStream(stream) {
 
 function* renderApp(route, template) {
   yield `
-    <!doctype html>
-    <html>
-      <head>
-          <title>${route.title}</title>
-          <meta name="Description" content="${route.description}">
-          <style rel="stylesheet" type="text/css">
-              @import url("/style/font/Lato-Regular.ttf");
-              @import url("/style/font/Lato-Black.ttf");
-          </style>
-          <style rel="stylesheet" type="text/css">${styles}</style>
-          <script type="application/ld+json">${route.schema}</script>
-          <script type="module">${readClientFile('polyfill.js')}</script>
-      </head>
+  <!doctype html>
+  <html>
+    <head>
+        <title>${route.title}</title>
+        <style rel="stylesheet" type="text/css">
+            @import url("/style/font/Lato-Regular.ttf");
+            @import url("/style/font/Lato-Black.ttf");
+        </style>
+        <style rel="stylesheet" type="text/css">${styles}</style>
+        <script type="module">${readClientFile('polyfill.js')}</script>
+    </head>
       <body> 
       ${htmlTemplates}
       <div id="root">`;
   yield* render(template);
   yield `</div>
-      <script type="module">${readClientFile(`ponyfill.js`)}</script>
-      <script type="module">${readClientFile(`index.js`)}</script>
+    <script type="module">${readClientFile(`ponyfill.js`)}</script>
+    <script type="module">${readClientFile(`${route.component}.js`)}</script>
     </body>
     </html>`;
 }
@@ -78,9 +76,7 @@ export default async (req, res, next) => {
     res.redirect(301, '/404');
     return;
   }
-  const template = await sanitizeTemplate(
-    route.template(route.data ? route.data : {})
-  );
+  const template = await sanitizeTemplate(route.template());
   const ssrResult = await renderApp(route, template);
   let stream = await renderStream(ssrResult);
   stream = stream.replace(/<template shadowroot="open"><\/template>/g, '');

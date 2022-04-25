@@ -219,5 +219,5 @@ export const template = () => `
 </login-view>
 `;
 
-export { ButtonComponent } from '@in/ui';
+export { ButtonComponent, CardComponent, TextInputComponent } from '@in/ui';
 export { AppHeader };
