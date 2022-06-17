@@ -1,5 +1,5 @@
 import { attachShadow, css, html, Component, Listen } from '@in/common';
-import { SESSION } from 'src/service/session';
+import { SESSION } from './../../service/session';
 import { LocationService } from '../../service/location';
 import { LoginRequest, LoginService } from '../../service/login';
 
