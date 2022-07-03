@@ -176,3 +176,7 @@ label {
   font-size: var(--font-body-sm);
   margin-bottom: var(--margin-sm);
 }
+
+.form-control {
+  margin-bottom: var(--margin-md);
+}

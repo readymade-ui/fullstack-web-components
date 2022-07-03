@@ -29,6 +29,7 @@ export function validate (elem: any, showError: boolean) {
             if(showError) {
                 if(elem.$input) {
                     elem.$input.classList.add("error");
+                    elem.$input.setAttribute("aria-invalid", "true");
                 }
                 if(messageElem) {
                     const div = document.createElement("div");
