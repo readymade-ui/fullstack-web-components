@@ -125,7 +125,7 @@ Form.args = {
             console.log(value);
         }
     },
-    onValidate: (ev) => {
+    onValidate: () => {
         const validations = [];
         for(let prop in validators) {
             validations.push(
