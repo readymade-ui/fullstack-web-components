@@ -1,7 +1,7 @@
 export function attachTemplate (context: any): void {
 
     const template = document.createElement("template");
-    template.innerHTML = context.ElementMeta.template;
+    template.innerHTML = context.elementMeta.template;
 
     context.appendChild(template.content.cloneNode(true));
 }

@@ -7,7 +7,6 @@ import { attachShadow, Component, html, css } from "@in/common";
             background: var(--color-white);
             border-radius: var(--radius-md);
             box-shadow: var(--shadow);
-            width: 320px;
             overflow: hidden;
         }
         ::slotted(*) {
