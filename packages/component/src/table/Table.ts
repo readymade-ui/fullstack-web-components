@@ -1,4 +1,6 @@
 import { Component, attachTemplate, attachStyle, html, css } from "@in/common";
+import { TrComponent } from "./Tr";
+import { TdComponent } from "./Td";
 
 export interface Column {
     property: string;
@@ -50,6 +52,8 @@ export class TableComponent extends HTMLTableElement {
 
     private channel: BroadcastChannel;
     private columnData: ColumnData;
+    private savedState: any[];
+    private editIndex: number = 0;
 
     constructor(){
         super();
@@ -69,6 +73,13 @@ export class TableComponent extends HTMLTableElement {
         return this.querySelector("tbody");
     }
 
+    get state() {
+        const tableRows = this.querySelector("tbody").querySelectorAll("tr");
+        return Array.from(tableRows).map((tr: TrComponent)=> {
+            return tr.$rowData;
+        }); 
+    }
+
     attributeChangedCallback(name, prev, next) {
         switch(name) {
             case 'channel':
@@ -78,12 +89,110 @@ export class TableComponent extends HTMLTableElement {
         }
     }
 
+    handleCellListeners(td: TdComponent, index: number) {
+        const tr = td.parentNode as TrComponent;
+        const input = td.querySelector("in-textinput") as HTMLInputElement;
+
+        if(input) {
+            input.value = td.getAttribute("value");
+            td.setAttribute("readonly", "false");
+
+            input.onclick = (ev) => {
+                const cells = this.querySelectorAll("td");
+                this.editIndex = Array.from(cells).indexOf(td);
+            };
+            input.onkeyup = (ev) => {
+                td.setAttribute("value", input.value);
+                tr.dispatchEvent(
+                    new CustomEvent("patch", {
+                        detail: {
+                            property: td.getAttribute("data-property"),
+                            changes: td.getAttribute("value")
+                        }
+                    })
+                )
+            };
+            input.onkeydown = (ev) => {
+                ev.stopPropagation();
+                if(ev.key === "Tab") {
+                    this.editIndex = index;
+                    this.onNext();
+                }
+            };
+        }
+    }
+
+    onNext(){
+        const cells = this.querySelectorAll("td");
+        if(!cells[this.editIndex]) {
+            return;
+        }
+        const input = cells[this.editIndex].querySelector("in-textinput") as HTMLInputElement;
+        if(input) {
+            input.focus();
+        }
+    }
+
     onMessage(ev) {
         switch(ev.data.type) {
             case "data":
                 this.onTableData(ev.data.detail);
                 break;
+            case "edit":
+                this.onEdit();
+                break;
+            case "readOnly":
+                this.onReadOnly();
+                break;
+            case "save":
+                this.onSave();
+                break;
         }
+    }
+
+    onEdit() {
+        const cells = this.querySelectorAll("td");
+
+        if(!this.savedState) {
+            this.savedState = JSON.parse(JSON.stringify(this.state));
+        }
+
+        cells.forEach(this.handleCellListeners.bind(this));
+
+        this.onNext();
+    }
+
+    onReadOnly() {
+        const cells = this.querySelectorAll("td");
+        cells.forEach((td) => {
+            td.setAttribute("readonly", "true");
+        });
+
+        if(this.savedState) {
+            this.renderRows(this.savedState);
+            this.savedState = undefined;
+        }
+        this.editIndex = 0;
+    }
+
+    onSave(){
+        const data:TrComponent[] = this.state; // data object of table rows.
+
+        if(this.querySelectorAll("td")[this.editIndex]) {
+            this.querySelectorAll("td")[this.editIndex].setAttribute(
+                "readonly",
+                "true"
+            );
+        }
+
+        this.savedState = undefined;
+        this.editIndex = 0;
+        this.channel.postMessage({
+            type: "change",
+            detail: data
+        });
+
+        this.renderRows(data);
     }
 
     onTableData(next) {
@@ -94,11 +203,19 @@ export class TableComponent extends HTMLTableElement {
     renderRows(rows: any[]) {
         this.$body.innerHTML = "";
         rows.forEach((rowData) => {
-            const tr = document.createElement("tr");
+            const tr = document.createElement("tr", {is: "in-tr"});
+            tr.dispatchEvent(
+                new CustomEvent("data", {
+                    detail: rowData
+                })
+            );
 
             this.columnData.forEach((colData) => {
-                const td = document.createElement("td");
-                td.innerText = rowData[colData.property];
+                const td = document.createElement("td", {is: "in-td"});
+
+                td.setAttribute("value", rowData[colData.property]);
+                td.setAttribute("data-property", colData.property);
+                td.setAttribute("readonly", "true");
                 tr.appendChild(td);
             });
 

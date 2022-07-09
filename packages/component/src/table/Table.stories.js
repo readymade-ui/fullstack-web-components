@@ -2,6 +2,10 @@ import { html } from "lit-html";
 import { TableCardComponent } from "./TableCard";
 import { ColumnData, TableComponent } from "./Table";
 import { CardComponent } from "../card/Card";
+import { TrComponent } from "./Tr";
+import { TextInputComponent } from "./../input/TextInput";
+
+// export { TextInputComponent, TableCardComponent, TableComponent, ColumnData, CardComponent, TrComponent };
 
 export default {
     title: "Components/Table",
@@ -79,8 +83,6 @@ const columnData = [
         span: 10
     },
 ];
-
-// export { TableCardComponent, TableComponent, ColumnData, CardComponent };
 
 const TableContext = {
     rowData,
