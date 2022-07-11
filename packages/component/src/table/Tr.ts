@@ -26,4 +26,9 @@ export class TrComponent extends HTMLTableRowElement {
 
         this.$rowData[ev.detail.property] = ev.detail.changes;
     }
+
+    @Listen("delete")
+    delete() {
+        this.parentNode.removeChild(this);
+    }
 }
