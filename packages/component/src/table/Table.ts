@@ -74,10 +74,13 @@ export class TableComponent extends HTMLTableElement {
     }
 
     get state() {
-        const tableRows = this.querySelector("tbody").querySelectorAll("tr");
-        return Array.from(tableRows).map((tr: TrComponent)=> {
+        const tableRows = this.$body.querySelectorAll("tr");
+
+        const data = Array.from(tableRows).map((tr: TrComponent)=> {
             return tr.$rowData;
         }); 
+        
+        return data;
     }
 
     attributeChangedCallback(name, prev, next) {
@@ -139,9 +142,10 @@ export class TableComponent extends HTMLTableElement {
                 this.onTableData(ev.data.detail);
                 break;
             case "edit":
-                this.onEdit();
+                console.log(this.state);
+                //this.onEdit();
                 break;
-            case "readOnly":
+            case "readonly":
                 this.onReadOnly();
                 break;
             case "save":
@@ -178,6 +182,8 @@ export class TableComponent extends HTMLTableElement {
     onSave(){
         const data:TrComponent[] = this.state; // data object of table rows.
 
+        console.log(data);
+
         if(this.querySelectorAll("td")[this.editIndex]) {
             this.querySelectorAll("td")[this.editIndex].setAttribute(
                 "readonly",
@@ -187,6 +193,7 @@ export class TableComponent extends HTMLTableElement {
 
         this.savedState = undefined;
         this.editIndex = 0;
+
         this.channel.postMessage({
             type: "change",
             detail: data
@@ -204,11 +211,12 @@ export class TableComponent extends HTMLTableElement {
         this.$body.innerHTML = "";
         rows.forEach((rowData) => {
             const tr = document.createElement("tr", {is: "in-tr"});
-            tr.dispatchEvent(
-                new CustomEvent("data", {
-                    detail: rowData
-                })
-            );
+          
+            const renderedData = new CustomEvent("data", {
+                detail: rowData
+            });
+
+            tr.dispatchEvent(renderedData);
 
             this.columnData.forEach((colData) => {
                 const td = document.createElement("td", {is: "in-td"});

@@ -27,8 +27,6 @@ export class TdComponent extends HTMLTableCellElement {
 
     constructor () {
         super();
-
-        console.log("construct td");
         
         attachTemplate(this);
     }
@@ -53,7 +51,7 @@ export class TdComponent extends HTMLTableCellElement {
         return ['value', 'readonly'];
     }
 
-    attributeChangedCalback(name, prev, next) {
+    attributeChangedCallback(name, prev, next) {
         switch(name) {
             case "value":
                 this.setValue(next);

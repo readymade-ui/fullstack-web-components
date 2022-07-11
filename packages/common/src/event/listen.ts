@@ -30,6 +30,12 @@ export function Listen(
                 descriptor.value.apply(this, args);
             });
 
+            if(eventName === "data") {
+                // this.addEventListener("data", handler);
+                console.log(eventName);
+                console.log(handler);
+            }
+
             getContext(this).addEventListener(eventName, handler);
         }
 

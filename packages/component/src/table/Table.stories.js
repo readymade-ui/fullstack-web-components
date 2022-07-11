@@ -3,6 +3,7 @@ import { TableCardComponent } from "./TableCard";
 import { ColumnData, TableComponent } from "./Table";
 import { CardComponent } from "../card/Card";
 import { TrComponent } from "./Tr";
+import { TdComponent } from "./Td";
 import { TextInputComponent } from "./../input/TextInput";
 
 // export { TextInputComponent, TableCardComponent, TableComponent, ColumnData, CardComponent, TrComponent };
