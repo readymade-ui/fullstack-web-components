@@ -155,8 +155,7 @@ export class TableComponent extends HTMLTableElement {
                 this.onTableData(ev.data.detail);
                 break;
             case "edit":
-                console.log(this.state);
-                //this.onEdit();
+                this.onEdit();
                 break;
             case "readonly":
                 this.onReadOnly();
@@ -238,8 +237,6 @@ export class TableComponent extends HTMLTableElement {
     onSave(){
         const data:TrComponent[] = this.state; // data object of table rows.
 
-        console.log(data);
-
         if(this.querySelectorAll("td")[this.editIndex]) {
             this.querySelectorAll("td")[this.editIndex].setAttribute(
                 "readonly",
@@ -267,12 +264,6 @@ export class TableComponent extends HTMLTableElement {
         this.$body.innerHTML = "";
         rows.forEach((rowData) => {
             const tr = document.createElement("tr", {is: "in-tr"});
-          
-            const renderedData = new CustomEvent("data", {
-                detail: rowData
-            });
-
-            tr.dispatchEvent(renderedData);
 
             this.columnData.forEach((colData) => {
                 const td = document.createElement("td", {is: "in-td"});
@@ -284,6 +275,12 @@ export class TableComponent extends HTMLTableElement {
             });
 
             this.$body.appendChild(tr);
+
+            const renderedData = new CustomEvent("data", {
+                detail: rowData
+            });
+
+            tr.dispatchEvent(renderedData);
         });
     }
 

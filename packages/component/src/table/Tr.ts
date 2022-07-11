@@ -18,13 +18,12 @@ export class TrComponent extends HTMLTableRowElement {
 
     @Listen("data")
     setValue(ev: CustomEvent) {
-        console.log("tr: listen to data");
         this.$rowData = ev.detail;
     }
 
     @Listen("patch")
     patchData(ev: CustomEvent) {
-        
+
         this.$rowData[ev.detail.property] = ev.detail.changes;
     }
 }

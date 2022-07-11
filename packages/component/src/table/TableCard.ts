@@ -22,37 +22,31 @@ import { Component, attachShadow, html, css, Listen } from "@in/common";
             <table is="in-table" slot="content"></table>
 
             <div class="table-footer" slot="footer">
-                <div class="table-footer" slot="footer">
-                    <div class="crud-actions">
-                        <button class="icon icon-add button-add" is="in-button">
-                            <svg aria-hidden="true" 
-                                focusable="false" 
-                                data-prefix="fas" 
-                                data-icon="plus"
-                                class="svg-inline--fa fa-plus fa-w-14"
-                                role="img"
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 448 512">
-                                <path fill="currentColor" 
-                                d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.6\ 
-                                7 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17\
-                                .67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.6\
-                                7 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-1\
-                                7.67-14.33-32-32-32z"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="save-actions">
-                        <button class="primary button-save" is="in-button">
-                            Save
-                        </button>
-                        <button class="secondary button-cancel" is="in-button">
-                            Cancel
-                        </button>
-                        <button class="secondary button-edit" is="in-button">
-                            Edit
-                        </button>
-                    </div>
+                <div class="crud-actions">
+                    <button class="icon icon-add button-add" is="in-button">
+                        <svg aria-hidden="true" 
+                            focusable="false" 
+                            data-prefix="fas" 
+                            data-icon="plus"
+                            class="svg-inline--fa fa-plus fa-w-14"
+                            role="img"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 448 512">
+                            <path fill="currentColor" 
+                            d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="save-actions">
+                    <button class="primary button-save" is="in-button" hidden="true">
+                        Save
+                    </button>
+                    <button class="secondary button-cancel" is="in-button" hidden="true">
+                        Cancel
+                    </button>
+                    <button class="secondary button-edit" is="in-button">
+                        Edit
+                    </button>
                 </div>
             </div>
         </in-card>
@@ -130,7 +124,7 @@ export class  TableCardComponent extends HTMLElement {
         this.$saveButton.setAttribute("hidden", "true");
         this.$cancelButton.setAttribute("hidden", "true");
         this.channel.postMessage({
-            type: 'readOnly'
+            type: 'readonly'
         });
     }
 
@@ -138,6 +132,8 @@ export class  TableCardComponent extends HTMLElement {
     save() {
         this.channel.postMessage({
             type: "save"
-        })
+        });
+
+        this.readOnlyMode(); //
     }
 }
