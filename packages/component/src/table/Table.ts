@@ -33,14 +33,26 @@ export type ColumnData = Column[];
             margin-top: var(--margin-xs);
             height: 44px;
             font-weight: var(--font-weight-default);
+            padding-left: calc(var(--padding-xxs) + var(--padding-sm));
+            padding-right: var(--padding-xxs);
         }
         [is="in-table"] tr {
             height: 58px;
             vertical-align: middle;
         }
-        [is="in-table"] td, [is="in-table"] th {
+        [is="in-table"] td {
             padding-left: var(--padding-xxs);
             padding-right: var(--padding-xxs);
+        }
+        [is="in-table"] th:first-child {
+            padding-left: calc(var(--padding-lg) + var(--padding-sm));
+        }
+        [is="in-table"] td:first-child {
+            padding-left: var(--padding-lg);
+        }
+        [is="in-table"] th:last-child,
+        [is="in-table"] td:last-child {
+            padding-right: var(--padding-lg);
         }
     `,
     template: html`
@@ -54,6 +66,7 @@ export class TableComponent extends HTMLTableElement {
     private columnData: ColumnData;
     private savedState: any[];
     private editIndex: number = 0;
+    private blankRowData:any;
 
     constructor(){
         super();
@@ -151,7 +164,50 @@ export class TableComponent extends HTMLTableElement {
             case "save":
                 this.onSave();
                 break;
+            case "add": 
+                this.onAdd();
+                break;
         }
+    }
+
+    onAdd() {
+        if(!this.savedState) {
+            this.savedState = JSON.parse(JSON.stringify(this.state));
+        } 
+
+        this.blankRowData  = {};
+        this.columnData.forEach((colData) => {
+            this.blankRowData[colData.property] = "";
+        });
+
+        const rowData = this.blankRowData;
+
+        const tr = document.createElement("tr", {is: "in-tr"});
+        this.columnData.forEach((colData) => {
+            const td = document.createElement("td", {is: "in-td"});
+            if(colData.align) {
+                td.align = colData.align;
+            }
+            td.setAttribute("value", rowData[colData.property]);
+            td.setAttribute("data-property", colData.property);
+            td.setAttribute("readonly", "false");
+
+            tr.appendChild(td);
+        });
+        this.$body.appendChild(tr);
+
+        tr.dispatchEvent(
+            new CustomEvent("data", {
+                detail: rowData
+            })
+        );
+        const cells = this.querySelectorAll("td");
+        cells.forEach(this.handleCellListeners.bind(this));
+
+        this.editIndex = Array.from(cells).indexOf(
+            tr.children[0] as HTMLTableCellElement
+        );
+        this.onNext();
     }
 
     onEdit() {
