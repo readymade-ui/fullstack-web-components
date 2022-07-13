@@ -6,3 +6,7 @@ cypress/screenshots
 cypress/videos
 packages/**/dist
 __diff_output__
+.idea/
+package-lock.json
+yarn.lock.bak
+yarn.lock
