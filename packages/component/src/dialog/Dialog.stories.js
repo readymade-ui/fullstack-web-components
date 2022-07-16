@@ -4,7 +4,7 @@ import { DialogComponent } from "./Dialog";
 import { ModalComponent } from "./Modal";
 import { TooltipComponent } from "./Tooltip";
 
-// export { ModalComponent, DialogComponent, ButtonComponent  };
+// export { TooltipComponent, ModalComponent, DialogComponent, ButtonComponent  };
 
 export default {
     title: "Components/Dialog",
