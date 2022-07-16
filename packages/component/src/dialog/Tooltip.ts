@@ -1,4 +1,4 @@
-import { Component, html, attachShadow, css } from "@in/common";
+import { Listen, Component, html, attachShadow, css } from "@in/common";
 
 @Component({
     selector: "in-tooltip",
@@ -27,5 +27,22 @@ export class TooltipComponent extends HTMLElement {
         attachShadow(this, {
             mode: "open"
         });
+    }
+
+    @Listen("position")
+    onPosition(ev: CustomEvent) {
+        const rect = ev.detail.rect;
+
+        const leftDisplacement = this.$child.getBoundingClientRect().width / 2;
+        
+        this.style.top = `${rect.bottom + 12}px`;
+        this.style.left = `${rect.left - leftDisplacement}px`;
+        this.style.width = `${this.$child.getBoundingClientRect().width}px`;
+        this.style.height = `${this.$child.getBoundingClientRect().height}px`;
+        this.style.visibility = "visible";
+    }
+
+    get $child(): Element {
+        return this.shadowRoot.querySelector("slot").assignedNodes()[0] as Element;
     }
 }

@@ -1,4 +1,4 @@
-import { Component, attachShadow, css } from "@in/common";
+import { query, Component, attachShadow, css } from "@in/common";
 
 @Component({
     selector: "in-dialog",
@@ -60,12 +60,12 @@ export class DialogComponent extends HTMLElement {
 
     targetListener(ev: MouseEvent) {
         if(this.$state !== "open") {
-            this.onOpen();
+            this.onOpen(ev);
         }
     }
 
-    onOpen() {
-        const template = document.querySelector(
+    onOpen(ev: MouseEvent) {
+        const template = query(
             this.$templateSelector
         ) as HTMLTemplateElement;
         
@@ -83,6 +83,17 @@ export class DialogComponent extends HTMLElement {
         this.$container.classList.add(this.$variant);
         this.$container.appendChild(clone);
         document.body.appendChild(this.$container);
+
+        if(this.$variant === "tooltip") {
+            this.$container.dispatchEvent(
+                new CustomEvent("position", {
+                    detail: {
+                        rect: (ev.target as Element).getBoundingClientRect()
+                    }
+                })
+            )
+        }
+
         this.$state = "open";
     }
 }
