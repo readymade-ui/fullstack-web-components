@@ -3,8 +3,10 @@ import { ButtonComponent } from "./../button/Button";
 import { DialogComponent } from "./Dialog";
 import { ModalComponent } from "./Modal";
 import { TooltipComponent } from "./Tooltip";
+import { DialogStack } from "./DialogStack";
 
-// export { TooltipComponent, ModalComponent, DialogComponent, ButtonComponent  };
+// export { DialogStack, TooltipComponent, ModalComponent, DialogComponent, ButtonComponent  };
+
 
 export default {
     title: "Components/Dialog",

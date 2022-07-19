@@ -8,7 +8,7 @@ import { Listen, Component, html, attachShadow, css } from "@in/common";
             position: fixed;
             min-width: 240px;
             max-width: 300px;
-            z-index: 900;
+            z-index: 9000;
         }
         ::slotted(*) {
             position: absolute;
