@@ -19,9 +19,15 @@ export class DialogStack {
     onFocus(ev: MouseEvent) {
         const closest = (ev.target as Element).closest("[data-dialog-id]");
 
+        // console.log(this.focused);
+        // console.log(this.focused.tagName)
+
         if(closest == null && this.focused && this.focused.tagName === "IN-TOOLTIP") {
             this.removeDialog(this.focused);
         }
+        // else if(closest == null) {
+
+        // }
     }
 
     focusDialog(element: Element) {
