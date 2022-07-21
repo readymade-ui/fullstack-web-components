@@ -2,6 +2,21 @@ import { IElementInternals as ElementInternals, ValidityStateFlags } from  "type
 import { Validator, validate } from "./validator";
 import { Component, attachShadow, css ,html, Listen } from "@in/common";
 
+/**
+ * Renders an input element.
+ * @tag {string} in-textinput
+ * @attr {string} name - Name of the form control. Submitted with the form as part of a name/value pair
+ * @attr {string} type - Type of form control
+ * @attr {boolean} required -  A value is required or must be check for the form to be submittable
+ * @attr {string} minlength - Minimum length (number of characters) of value
+ * @attr {string} maxlength - Maximum length (number of characters) of value
+ * @attr {string} pattern - Pattern the value must match to be valid
+ * @attr {string} list - Value of the id attribute of the <datalist> of autocomplete options
+ * @attr {string} placeholder - Text that appears in the form control when it has no value set
+ * @attr {boolean} readonly - The value is not editable
+ * @attr {string} size - Size of the control
+ * @attr {string} spellcheck - Defines whether the element may be checked for spelling errors.
+ */
 @Component({
     selector: "in-textinput",
     style: css`:host {

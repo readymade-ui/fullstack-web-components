@@ -12,7 +12,7 @@
           "name": "ButtonComponent",
           "declaration": {
             "name": "ButtonComponent",
-            "module": "./src/button"
+            "module": "\"./src/button\""
           }
         },
         {
@@ -20,7 +20,7 @@
           "name": "CardComponent",
           "declaration": {
             "name": "CardComponent",
-            "module": "./src/card"
+            "module": "\"./src/card\""
           }
         },
         {
@@ -28,7 +28,7 @@
           "name": "DialogComponent",
           "declaration": {
             "name": "DialogComponent",
-            "module": "./src/dialog"
+            "module": "\"./src/dialog\""
           }
         },
         {
@@ -36,7 +36,7 @@
           "name": "DialogStack",
           "declaration": {
             "name": "DialogStack",
-            "module": "./src/dialog"
+            "module": "\"./src/dialog\""
           }
         },
         {
@@ -44,7 +44,7 @@
           "name": "ModalComponent",
           "declaration": {
             "name": "ModalComponent",
-            "module": "./src/dialog"
+            "module": "\"./src/dialog\""
           }
         },
         {
@@ -52,7 +52,7 @@
           "name": "TooltipComponent",
           "declaration": {
             "name": "TooltipComponent",
-            "module": "./src/dialog"
+            "module": "\"./src/dialog\""
           }
         },
         {
@@ -60,7 +60,7 @@
           "name": "Validator",
           "declaration": {
             "name": "Validator",
-            "module": "./src/input"
+            "module": "\"./src/input\""
           }
         },
         {
@@ -68,7 +68,7 @@
           "name": "validate",
           "declaration": {
             "name": "validate",
-            "module": "./src/input"
+            "module": "\"./src/input\""
           }
         },
         {
@@ -76,7 +76,7 @@
           "name": "TextInputComponent",
           "declaration": {
             "name": "TextInputComponent",
-            "module": "./src/input"
+            "module": "\"./src/input\""
           }
         },
         {
@@ -84,7 +84,7 @@
           "name": "TableCardComponent",
           "declaration": {
             "name": "TableCardComponent",
-            "module": "./src/table"
+            "module": "\"./src/table\""
           }
         },
         {
@@ -92,7 +92,7 @@
           "name": "TableComponent",
           "declaration": {
             "name": "TableComponent",
-            "module": "./src/table"
+            "module": "\"./src/table\""
           }
         },
         {
@@ -100,7 +100,7 @@
           "name": "TrComponent",
           "declaration": {
             "name": "TrComponent",
-            "module": "./src/table"
+            "module": "\"./src/table\""
           }
         },
         {
@@ -108,7 +108,7 @@
           "name": "TdComponent",
           "declaration": {
             "name": "TdComponent",
-            "module": "./src/table"
+            "module": "\"./src/table\""
           }
         },
         {
@@ -116,7 +116,7 @@
           "name": "Column",
           "declaration": {
             "name": "Column",
-            "module": "./src/table"
+            "module": "\"./src/table\""
           }
         },
         {
@@ -124,7 +124,7 @@
           "name": "ColumnData",
           "declaration": {
             "name": "ColumnData",
-            "module": "./src/table"
+            "module": "\"./src/table\""
           }
         }
       ]
@@ -143,44 +143,19 @@
     },
     {
       "kind": "javascript-module",
-      "path": "dist/bundles/index.js",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "target"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "declaration": {
-            "name": "target",
-            "module": "dist/bundles/index.js"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "declaration": {
-            "name": "target",
-            "module": "dist/bundles/index.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "dist/fesm2015/index.js",
       "declarations": [
         {
           "kind": "variable",
           "name": "ButtonComponent",
-          "default": "class ButtonComponent extends HTMLButtonElement {\n    constructor() {\n        super();\n    }\n    connectedCallback() {\n        this.classList.add(in-button);\n        attachStyle(this);\n    }\n}",
-          "description": "Renders a button."
+          "default": "class ButtonComponent extends HTMLButtonElement {\n    constructor() {\n        super();\n    }\n    connectedCallback() {\n        this.classList.add(\"in-button\");\n        attachStyle(this);\n    }\n}",
+          "description": "Customized built-in element that renders a styled button.\n\n`ButtonComponent` is displayed contextually as one of three variants: primary, secondary or icon. The variant is set using a CSS classname. The label is set via the content of the `HTMLButtonElement`. When displayed as the icon variant, ButtonComponent expects two direct children: `HTMLSVGElement` and `HTMLSpanElement` that displays a label exclusively for screen readers using the `hidden` HTML attribute."
         },
         {
           "kind": "variable",
           "name": "CardComponent",
-          "default": "class CardComponent extends HTMLElement {\n    constructor() {\n        super();\n        attachShadow(this);\n    }\n}"
+          "default": "class CardComponent extends HTMLElement {\n    constructor() {\n        super();\n        attachShadow(this);\n    }\n}",
+          "description": "Autonomous custom element that renders a card container.\n`CardComponent` displays content in a header, content, footer layout."
         },
         {
           "kind": "class",
@@ -292,17 +267,18 @@
         {
           "kind": "variable",
           "name": "DialogComponent",
-          "default": "class DialogComponent extends HTMLElement {\n    constructor() {\n        super();\n        attachShadow(this, {\n            mode: open // todo\n        });\n    }\n    static get observedAttributes() {\n        return [target, template, variant];\n    }\n    attributeChangedCallback(name, prev, next) {\n        switch (name) {\n            case target:\n                if (window.__dialogStack.findTemplateIndex(next) === -1) {\n                    window.__dialogStack.registerTemplate(next);\n                    setTimeout(() => {\n                        this.setTarget(next);\n                    }, 1);\n                }\n                break;\n            case template:\n                this.$templateSelector = next;\n                break;\n            case variant:\n                this.$variant = next;\n                break;\n        }\n    }\n    setTarget(selector) {\n        this.$targetSelector = selector;\n        this.$target = document.querySelector(this.$targetSelector);\n        if (!this.$target) {\n            console.error(`DialogComponent cannot find Element with selector ${selector}`);\n            return;\n        }\n        this.$target.addEventListener(click, this.targetListener.bind(this), false);\n    }\n    targetListener(ev) {\n        if (this.$state !== open) {\n            this.onOpen(ev);\n        }\n    }\n    onOpen(ev) {\n        const template = query(this.$templateSelector);\n        if (!template) {\n            console.error(`DialogComponent cannot find HTMLTemplateElement \n                with selector ${this.$templateSelector}`);\n            return;\n        }\n        this.$container = document.createElement(`in-${this.$variant}`);\n        const clone = template.content.cloneNode(true);\n        // note: The next two lines does not exists in the book.\n        // This update will allow DialogStack@removeDialog() to target dialog element\n        // with the 'data-dialog-id' attribute.\n        const templateId = template.getAttribute(data-template-id);\n        this.$container.setAttribute(data-dialog-id, templateId);\n        this.$container.classList.add(this.$variant);\n        this.$container.appendChild(clone);\n        window.__dialogStack.pushDialog(this.$container);\n        if (this.$variant === tooltip) {\n            this.$container.dispatchEvent(new CustomEvent(position, {\n                detail: {\n                    rect: ev.target.getBoundingClientRect()\n                }\n            }));\n        }\n        this.$state = open;\n        const closeBtn = this.$container.querySelector(.dialog-close-button);\n        if (closeBtn) {\n            closeBtn.addEventListener(click, (ev) => {\n                this.onClose();\n            });\n        }\n    }\n    onClose() {\n        window.__dialogStack.removeDialog(this.$container);\n        window.__dialogStack.removeTemplate(this.$targetSelector);\n        this.$state = close;\n    }\n    disconnectedCallback() {\n        window.__dialogStack.removeTemplate(this.$targetSelector);\n    }\n}"
+          "default": "class DialogComponent extends HTMLElement {\n    constructor() {\n        super();\n        attachShadow(this, {\n            mode: \"open\" // todo\n        });\n    }\n    static get observedAttributes() {\n        return [\"target\", \"template\", \"variant\"];\n    }\n    attributeChangedCallback(name, prev, next) {\n        switch (name) {\n            case \"target\":\n                if (window.__dialogStack.findTemplateIndex(next) === -1) {\n                    window.__dialogStack.registerTemplate(next);\n                    setTimeout(() => {\n                        this.setTarget(next);\n                    }, 1);\n                }\n                break;\n            case \"template\":\n                this.$templateSelector = next;\n                break;\n            case \"variant\":\n                this.$variant = next;\n                break;\n        }\n    }\n    setTarget(selector) {\n        this.$targetSelector = selector;\n        this.$target = document.querySelector(this.$targetSelector);\n        if (!this.$target) {\n            console.error(`DialogComponent cannot find Element with selector ${selector}`);\n            return;\n        }\n        this.$target.addEventListener(\"click\", this.targetListener.bind(this), false);\n    }\n    targetListener(ev) {\n        if (this.$state !== \"open\") {\n            this.onOpen(ev);\n        }\n    }\n    onOpen(ev) {\n        const template = query(this.$templateSelector);\n        if (!template) {\n            console.error(`DialogComponent cannot find HTMLTemplateElement \n                with selector ${this.$templateSelector}`);\n            return;\n        }\n        this.$container = document.createElement(`in-${this.$variant}`);\n        const clone = template.content.cloneNode(true);\n        // note: The next two lines does not exists in the book.\n        // This update will allow DialogStack@removeDialog() to target dialog element\n        // with the 'data-dialog-id' attribute.\n        const templateId = template.getAttribute(\"data-template-id\");\n        this.$container.setAttribute(\"data-dialog-id\", templateId);\n        this.$container.classList.add(this.$variant);\n        this.$container.appendChild(clone);\n        window.__dialogStack.pushDialog(this.$container);\n        if (this.$variant === \"tooltip\") {\n            this.$container.dispatchEvent(new CustomEvent(\"position\", {\n                detail: {\n                    rect: ev.target.getBoundingClientRect()\n                }\n            }));\n        }\n        this.$state = \"open\";\n        const closeBtn = this.$container.querySelector(\".dialog-close-button\");\n        if (closeBtn) {\n            closeBtn.addEventListener(\"click\", (ev) => {\n                this.onClose();\n            });\n        }\n    }\n    onClose() {\n        window.__dialogStack.removeDialog(this.$container);\n        window.__dialogStack.removeTemplate(this.$targetSelector);\n        this.$state = \"close\";\n    }\n    disconnectedCallback() {\n        window.__dialogStack.removeTemplate(this.$targetSelector);\n    }\n}",
+          "description": "Controller for rendering a dialog from HTML template.\n\n`DialogComponent` requires an instance of `DialogStack` to be set on `window.__dialogStack` prior to instantiation. After specifying a `template`, `target`, and `variant` with HTML attributes, `DialogComponent` will display either a modal or tooltip that renders a HTML template."
         },
         {
           "kind": "variable",
           "name": "ModalComponent",
-          "default": "class ModalComponent extends HTMLElement {\n    constructor() {\n        super();\n        attachShadow(this, {\n            mode: open\n        });\n    }\n}"
+          "default": "class ModalComponent extends HTMLElement {\n    constructor() {\n        super();\n        attachShadow(this, {\n            mode: \"open\"\n        });\n    }\n}"
         },
         {
           "kind": "variable",
           "name": "TooltipComponent",
-          "default": "class TooltipComponent extends HTMLElement {\n    constructor() {\n        super();\n        attachShadow(this, {\n            mode: open\n        });\n    }\n    onPosition(ev) {\n        const rect = ev.detail.rect;\n        const leftDisplacement = this.$child.getBoundingClientRect().width / 2;\n        this.style.top = `${rect.bottom + 12}px`;\n        this.style.left = `${rect.left - leftDisplacement}px`;\n        this.style.width = `${this.$child.getBoundingClientRect().width}px`;\n        this.style.height = `${this.$child.getBoundingClientRect().height}px`;\n        this.style.visibility = visible;\n    }\n    get $child() {\n        return this.shadowRoot.querySelector(slot).assignedNodes()[0];\n    }\n}"
+          "default": "class TooltipComponent extends HTMLElement {\n    constructor() {\n        super();\n        attachShadow(this, {\n            mode: \"open\"\n        });\n    }\n    onPosition(ev) {\n        const rect = ev.detail.rect;\n        const leftDisplacement = this.$child.getBoundingClientRect().width / 2;\n        this.style.top = `${rect.bottom + 12}px`;\n        this.style.left = `${rect.left - leftDisplacement}px`;\n        this.style.width = `${this.$child.getBoundingClientRect().width}px`;\n        this.style.height = `${this.$child.getBoundingClientRect().height}px`;\n        this.style.visibility = \"visible\";\n    }\n    get $child() {\n        return this.shadowRoot.querySelector(\"slot\").assignedNodes()[0];\n    }\n}"
         },
         {
           "kind": "function",
@@ -319,17 +295,19 @@
         {
           "kind": "variable",
           "name": "TextInputComponent",
-          "default": "class TextInputComponent extends HTMLElement {\n    constructor() {\n        super();\n        this.$attr = {};\n        this.internals = this.attachInternals();\n        attachShadow(this);\n    }\n    static get observedAttributes() {\n        return [\n            name,\n            type,\n            required,\n            minlength,\n            maxlength,\n            pattern,\n            list,\n            placeholder,\n            readonly,\n            spellcheck,\n            value,\n            disabled,\n        ];\n    }\n    attributeChangedCallback(name, prev, next) {\n        this.$attr[name] = next;\n        switch (name) {\n            case value:\n                this.value = next;\n                break;\n            case required:\n                this.required = next;\n                break;\n            case disabled:\n                this.disabled = next;\n                break;\n            case type:\n                this.$input.setAttribute(type, next);\n                break;\n            case minlength:\n                this.$input.setAttribute(minlength, next);\n                break;\n            case maxlength:\n                this.$input.setAttribute(maxlength, next);\n                break;\n            case pattern:\n                this.$input.setAttribute(pattern, next);\n                break;\n            case list:\n                this.$input.setAttribute(list, next);\n                break;\n            case placeholder:\n                this.$input.setAttribute(placeholder, next);\n                break;\n            case readonly:\n                this.$input.setAttribute(readonly, next);\n                break;\n            case spellcheck:\n                this.$input.setAttribute(spellcheck, next);\n                break;\n        }\n    }\n    onValidate() {\n        validate(this, true);\n    }\n    onChange() {\n        this.shadowRoot.querySelector(.message).innerHTML = ;\n        this.$input.classList.remove(error);\n        this.internals.setFormValue(this.value, this.value);\n        this.$input.removeAttribute(aria-invalid);\n    }\n    connectedCallback() {\n        for (let prop in this.$attr) {\n            this.$input.setAttribute(prop, this.$attr[prop]);\n        }\n        validate(this, false);\n    }\n    formDisabledCallback(disabled) {\n        this.disabled = disabled;\n    }\n    formStateRestoreCallback(state, mode) {\n        this.value = state;\n    }\n    formResetCallback(state) {\n        this.value = this.getAttribute(value);\n    }\n    focus() {\n        this.$input.focus();\n    }\n    blur() {\n        this.$input.blur();\n    }\n    checkValidity() {\n        return this.internals.checkValidity();\n    }\n    reportValidity() {\n        return this.internals.reportValidity();\n    }\n    set value(value) {\n        this.$input.value = value;\n    }\n    set disabled(disabled) {\n        if (disabled === true || disabled === true) {\n            this.$input.setAttribute(disabled, true);\n        }\n        if (disabled === false || disabled === false) {\n            this.$input.removeAttribute(disabled);\n        }\n    }\n    set required(required) {\n        if (required === true || required === true) {\n            this.$input.setAttribute(required, true);\n        }\n        if (required === false || required === false) {\n            this.$input.removeAttribute(required);\n        }\n    }\n    get disabled() {\n        return this.$input.disabled;\n    }\n    get required() {\n        return this.$input.required;\n    }\n    get value() {\n        return this.$input.value;\n    }\n    get $input() {\n        return this.shadowRoot.querySelector(input);\n    }\n    get validity() {\n        return this.internals.validity;\n    }\n    get validationMessage() {\n        return this.internals.validationMessage;\n    }\n    get type() {\n        var _a;\n        return (_a = this.$input.type) !== null && _a !== void 0 ? _a : text;\n    }\n    set type(type) {\n        this.$input.setAttribute(type, type);\n    }\n    get list() {\n        return this.$input.list;\n    }\n    get minLength() {\n        return this.$input.minLength;\n    }\n    set minLength(min) {\n        this.$input.minLength = min;\n    }\n    get maxLength() {\n        return this.$input.maxLength;\n    }\n    set maxLength(max) {\n        this.$input.maxLength = max;\n    }\n    get readOnly() {\n        return this.$input.readOnly;\n    }\n    get pattern() {\n        return this.$input.pattern;\n    }\n    set pattern(pattern) {\n        this.$input.pattern = pattern;\n    }\n    get spellcheck() {\n        return this.$input.spellcheck;\n    }\n    get placeholder() {\n        return this.$input.placeholder;\n    }\n    setValidity(flags, message, anchor) {\n        this.internals.setValidity(flags, message, anchor);\n    }\n}"
+          "default": "class TextInputComponent extends HTMLElement {\n    constructor() {\n        super();\n        this.$attr = {};\n        this.internals = this.attachInternals();\n        attachShadow(this);\n    }\n    static get observedAttributes() {\n        return [\n            \"name\",\n            \"type\",\n            \"required\",\n            \"minlength\",\n            \"maxlength\",\n            \"pattern\",\n            \"list\",\n            \"placeholder\",\n            \"readonly\",\n            \"spellcheck\",\n            \"value\",\n            \"disabled\",\n        ];\n    }\n    attributeChangedCallback(name, prev, next) {\n        this.$attr[name] = next;\n        switch (name) {\n            case \"value\":\n                this.value = next;\n                break;\n            case \"required\":\n                this.required = next;\n                break;\n            case \"disabled\":\n                this.disabled = next;\n                break;\n            case \"type\":\n                this.$input.setAttribute(\"type\", next);\n                break;\n            case \"minlength\":\n                this.$input.setAttribute(\"minlength\", next);\n                break;\n            case \"maxlength\":\n                this.$input.setAttribute(\"maxlength\", next);\n                break;\n            case \"pattern\":\n                this.$input.setAttribute(\"pattern\", next);\n                break;\n            case \"list\":\n                this.$input.setAttribute(\"list\", next);\n                break;\n            case \"placeholder\":\n                this.$input.setAttribute(\"placeholder\", next);\n                break;\n            case \"readonly\":\n                this.$input.setAttribute(\"readonly\", next);\n                break;\n            case \"spellcheck\":\n                this.$input.setAttribute(\"spellcheck\", next);\n                break;\n        }\n    }\n    onValidate() {\n        validate(this, true);\n    }\n    onChange() {\n        this.shadowRoot.querySelector(\".message\").innerHTML = \"\";\n        this.$input.classList.remove(\"error\");\n        this.internals.setFormValue(this.value, this.value);\n        this.$input.removeAttribute(\"aria-invalid\");\n    }\n    connectedCallback() {\n        for (let prop in this.$attr) {\n            this.$input.setAttribute(prop, this.$attr[prop]);\n        }\n        validate(this, false);\n    }\n    formDisabledCallback(disabled) {\n        this.disabled = disabled;\n    }\n    formStateRestoreCallback(state, mode) {\n        this.value = state;\n    }\n    formResetCallback(state) {\n        this.value = this.getAttribute(\"value\");\n    }\n    focus() {\n        this.$input.focus();\n    }\n    blur() {\n        this.$input.blur();\n    }\n    checkValidity() {\n        return this.internals.checkValidity();\n    }\n    reportValidity() {\n        return this.internals.reportValidity();\n    }\n    set value(value) {\n        this.$input.value = value;\n    }\n    set disabled(disabled) {\n        if (disabled === \"true\" || disabled === true) {\n            this.$input.setAttribute(\"disabled\", \"true\");\n        }\n        if (disabled === \"false\" || disabled === false) {\n            this.$input.removeAttribute(\"disabled\");\n        }\n    }\n    set required(required) {\n        if (required === \"true\" || required === true) {\n            this.$input.setAttribute(\"required\", \"true\");\n        }\n        if (required === \"false\" || required === false) {\n            this.$input.removeAttribute(\"required\");\n        }\n    }\n    get disabled() {\n        return this.$input.disabled;\n    }\n    get required() {\n        return this.$input.required;\n    }\n    get value() {\n        return this.$input.value;\n    }\n    get $input() {\n        return this.shadowRoot.querySelector(\"input\");\n    }\n    get validity() {\n        return this.internals.validity;\n    }\n    get validationMessage() {\n        return this.internals.validationMessage;\n    }\n    get type() {\n        var _a;\n        return (_a = this.$input.type) !== null && _a !== void 0 ? _a : \"text\";\n    }\n    set type(type) {\n        this.$input.setAttribute(\"type\", type);\n    }\n    get list() {\n        return this.$input.list;\n    }\n    get minLength() {\n        return this.$input.minLength;\n    }\n    set minLength(min) {\n        this.$input.minLength = min;\n    }\n    get maxLength() {\n        return this.$input.maxLength;\n    }\n    set maxLength(max) {\n        this.$input.maxLength = max;\n    }\n    get readOnly() {\n        return this.$input.readOnly;\n    }\n    get pattern() {\n        return this.$input.pattern;\n    }\n    set pattern(pattern) {\n        this.$input.pattern = pattern;\n    }\n    get spellcheck() {\n        return this.$input.spellcheck;\n    }\n    get placeholder() {\n        return this.$input.placeholder;\n    }\n    setValidity(flags, message, anchor) {\n        this.internals.setValidity(flags, message, anchor);\n    }\n}",
+          "description": "Renders an input element."
         },
         {
           "kind": "variable",
           "name": "TableComponent",
-          "default": "class TableComponent extends HTMLTableElement {\n    constructor() {\n        super();\n        this.editIndex = 0;\n        attachTemplate(this);\n        attachStyle(this);\n    }\n    static get observedAttributes() {\n        return [channel];\n    }\n    get $head() {\n        return this.querySelector(thead);\n    }\n    get $body() {\n        return this.querySelector(tbody);\n    }\n    get state() {\n        const tableRows = this.$body.querySelectorAll(tr);\n        const data = Array.from(tableRows).map((tr) => {\n            return tr.$rowData;\n        });\n        return data;\n    }\n    attributeChangedCallback(name, prev, next) {\n        switch (name) {\n            case 'channel':\n                this.channel = new BroadcastChannel(next);\n                this.channel.onmessage = this.onMessage.bind(this);\n                break;\n        }\n    }\n    handleCellListeners(td, index) {\n        const tr = td.parentNode;\n        const input = td.querySelector(in-textinput);\n        const button = td.querySelector([is='in-button']);\n        if (button) {\n            td.setAttribute(readonly, false);\n            button.onclick = () => {\n                this.editIndex = index;\n                td.parentNode.dispatchEvent(new CustomEvent(delete));\n            };\n            button.onkeydown = (ev) => {\n                ev.stopPropagation();\n                if (ev.key === Tab) {\n                    this.editIndex = index;\n                    this.onNext();\n                }\n                if (ev.key === Enter || ev.key === Select) {\n                    this.editIndex = index;\n                    this.onNext();\n                    td.parentNode.dispatchEvent(new CustomEvent(delete));\n                }\n            };\n        }\n        if (input) {\n            input.value = td.getAttribute(value);\n            td.setAttribute(readonly, false);\n            input.onclick = (ev) => {\n                const cells = this.querySelectorAll(td);\n                this.editIndex = Array.from(cells).indexOf(td);\n            };\n            input.onkeyup = (ev) => {\n                td.setAttribute(value, input.value);\n                tr.dispatchEvent(new CustomEvent(patch, {\n                    detail: {\n                        property: td.getAttribute(data-property),\n                        changes: td.getAttribute(value)\n                    }\n                }));\n            };\n            input.onkeydown = (ev) => {\n                ev.stopPropagation();\n                if (ev.key === Tab) {\n                    this.editIndex = index;\n                    this.onNext();\n                }\n            };\n        }\n    }\n    onNext() {\n        const cells = this.querySelectorAll(td);\n        if (!cells[this.editIndex]) {\n            return;\n        }\n        const input = cells[this.editIndex].querySelector(in-textinput);\n        if (input) {\n            input.focus();\n        }\n    }\n    onMessage(ev) {\n        switch (ev.data.type) {\n            case data:\n                this.onTableData(ev.data.detail);\n                break;\n            case edit:\n                this.onEdit();\n                break;\n            case readonly:\n                this.onReadOnly();\n                break;\n            case save:\n                this.onSave();\n                break;\n            case add:\n                this.onAdd();\n                break;\n        }\n    }\n    onAdd() {\n        if (!this.savedState) {\n            this.savedState = JSON.parse(JSON.stringify(this.state));\n        }\n        this.blankRowData = {};\n        this.columnData.forEach((colData) => {\n            this.blankRowData[colData.property] = ;\n        });\n        const rowData = this.blankRowData;\n        const tr = document.createElement(tr, { is: in-tr });\n        this.columnData.forEach((colData) => {\n            const td = document.createElement(td, { is: in-td });\n            if (colData.align) {\n                td.align = colData.align;\n            }\n            td.setAttribute(value, rowData[colData.property]);\n            td.setAttribute(data-property, colData.property);\n            td.setAttribute(readonly, false);\n            tr.appendChild(td);\n        });\n        this.createDeleteButton(tr);\n        this.$body.appendChild(tr);\n        tr.dispatchEvent(new CustomEvent(data, {\n            detail: rowData\n        }));\n        const cells = this.querySelectorAll(td);\n        cells.forEach(this.handleCellListeners.bind(this));\n        this.editIndex = Array.from(cells).indexOf(tr.children[0]);\n        this.onNext();\n    }\n    onEdit() {\n        const cells = this.querySelectorAll(td);\n        if (!this.savedState) {\n            this.savedState = JSON.parse(JSON.stringify(this.state));\n        }\n        cells.forEach(this.handleCellListeners.bind(this));\n        this.onNext();\n    }\n    onReadOnly() {\n        const cells = this.querySelectorAll(td);\n        cells.forEach((td) => {\n            td.setAttribute(readonly, true);\n        });\n        if (this.savedState) {\n            this.renderRows(this.savedState);\n            this.savedState = undefined;\n        }\n        this.editIndex = 0;\n    }\n    onSave() {\n        const data = this.state; // data object of table rows.\n        if (this.querySelectorAll(td)[this.editIndex]) {\n            this.querySelectorAll(td)[this.editIndex].setAttribute(readonly, true);\n        }\n        this.savedState = undefined;\n        this.editIndex = 0;\n        this.channel.postMessage({\n            type: change,\n            detail: data\n        });\n        this.renderRows(data);\n    }\n    onTableData(next) {\n        this.renderHeader(next.columnData);\n        this.renderRows(next.rowData);\n    }\n    renderRows(rows) {\n        this.$body.innerHTML = ;\n        rows.forEach((rowData) => {\n            const tr = document.createElement(tr, { is: in-tr });\n            this.columnData.forEach((colData) => {\n                const td = document.createElement(td, { is: in-td });\n                td.setAttribute(value, rowData[colData.property]);\n                td.setAttribute(data-property, colData.property);\n                td.setAttribute(readonly, true);\n                tr.appendChild(td);\n            });\n            this.createDeleteButton(tr);\n            this.$body.appendChild(tr);\n            const renderedData = new CustomEvent(data, {\n                detail: rowData\n            });\n            tr.dispatchEvent(renderedData);\n        });\n    }\n    renderHeader(cols) {\n        this.columnData = cols.sort((a, b) => a.index - b.index);\n        const tr = document.createElement(tr);\n        cols.forEach((colData) => {\n            const th = document.createElement(th);\n            th.innerText = colData.label;\n            tr.appendChild(th);\n        });\n        this.$head.innerHTML = ;\n        this.$head.appendChild(tr);\n    }\n    createDeleteButton(tr) {\n        const deleteButtonTd = document.createElement(td);\n        deleteButtonTd.classList.add(delete-cell);\n        deleteButtonTd.setAttribute(readonly, true);\n        deleteButtonTd.innerHTML = `\n            <button class=icon icon-trash is=in-button>\n                <svg xmlns=http://www.w3.org/2000/svg viewBox=0 0 448 512>\n                    <path fill=currentColor\n                     d=M268 416h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12zM432 80h-82.41l-34-56.7A48 48 0 0 0 274.41 0H173.59a48 48 0 0 0-41.16 23.3L98.41 80H16A16 16 0 0 0 0 96v16a16 16 0 0 0 16 16h16v336a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128h16a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16zM171.84 50.91A6 6 0 0 1 177 48h94a6 6 0 0 1 5.15 2.91L293.61 80H154.39zM368 464H80V128h288zm-212-48h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12z></path>\n                </svg>\n            </button>\n        `;\n        tr.appendChild(deleteButtonTd);\n    }\n}"
+          "default": "class TableComponent extends HTMLTableElement {\n    constructor() {\n        super();\n        this.editIndex = 0;\n        attachTemplate(this);\n        attachStyle(this);\n    }\n    static get observedAttributes() {\n        return [\"channel\"];\n    }\n    get $head() {\n        return this.querySelector(\"thead\");\n    }\n    get $body() {\n        return this.querySelector(\"tbody\");\n    }\n    get state() {\n        const tableRows = this.$body.querySelectorAll(\"tr\");\n        const data = Array.from(tableRows).map((tr) => {\n            return tr.$rowData;\n        });\n        return data;\n    }\n    attributeChangedCallback(name, prev, next) {\n        switch (name) {\n            case 'channel':\n                this.channel = new BroadcastChannel(next);\n                this.channel.onmessage = this.onMessage.bind(this);\n                break;\n        }\n    }\n    handleCellListeners(td, index) {\n        const tr = td.parentNode;\n        const input = td.querySelector(\"in-textinput\");\n        const button = td.querySelector(\"[is='in-button']\");\n        if (button) {\n            td.setAttribute(\"readonly\", \"false\");\n            button.onclick = () => {\n                this.editIndex = index;\n                td.parentNode.dispatchEvent(new CustomEvent(\"delete\"));\n            };\n            button.onkeydown = (ev) => {\n                ev.stopPropagation();\n                if (ev.key === \"Tab\") {\n                    this.editIndex = index;\n                    this.onNext();\n                }\n                if (ev.key === \"Enter\" || ev.key === \"Select\") {\n                    this.editIndex = index;\n                    this.onNext();\n                    td.parentNode.dispatchEvent(new CustomEvent(\"delete\"));\n                }\n            };\n        }\n        if (input) {\n            input.value = td.getAttribute(\"value\");\n            td.setAttribute(\"readonly\", \"false\");\n            input.onclick = (ev) => {\n                const cells = this.querySelectorAll(\"td\");\n                this.editIndex = Array.from(cells).indexOf(td);\n            };\n            input.onkeyup = (ev) => {\n                td.setAttribute(\"value\", input.value);\n                tr.dispatchEvent(new CustomEvent(\"patch\", {\n                    detail: {\n                        property: td.getAttribute(\"data-property\"),\n                        changes: td.getAttribute(\"value\")\n                    }\n                }));\n            };\n            input.onkeydown = (ev) => {\n                ev.stopPropagation();\n                if (ev.key === \"Tab\") {\n                    this.editIndex = index;\n                    this.onNext();\n                }\n            };\n        }\n    }\n    onNext() {\n        const cells = this.querySelectorAll(\"td\");\n        if (!cells[this.editIndex]) {\n            return;\n        }\n        const input = cells[this.editIndex].querySelector(\"in-textinput\");\n        if (input) {\n            input.focus();\n        }\n    }\n    onMessage(ev) {\n        switch (ev.data.type) {\n            case \"data\":\n                this.onTableData(ev.data.detail);\n                break;\n            case \"edit\":\n                this.onEdit();\n                break;\n            case \"readonly\":\n                this.onReadOnly();\n                break;\n            case \"save\":\n                this.onSave();\n                break;\n            case \"add\":\n                this.onAdd();\n                break;\n        }\n    }\n    onAdd() {\n        if (!this.savedState) {\n            this.savedState = JSON.parse(JSON.stringify(this.state));\n        }\n        this.blankRowData = {};\n        this.columnData.forEach((colData) => {\n            this.blankRowData[colData.property] = \"\";\n        });\n        const rowData = this.blankRowData;\n        const tr = document.createElement(\"tr\", { is: \"in-tr\" });\n        this.columnData.forEach((colData) => {\n            const td = document.createElement(\"td\", { is: \"in-td\" });\n            if (colData.align) {\n                td.align = colData.align;\n            }\n            td.setAttribute(\"value\", rowData[colData.property]);\n            td.setAttribute(\"data-property\", colData.property);\n            td.setAttribute(\"readonly\", \"false\");\n            tr.appendChild(td);\n        });\n        this.createDeleteButton(tr);\n        this.$body.appendChild(tr);\n        tr.dispatchEvent(new CustomEvent(\"data\", {\n            detail: rowData\n        }));\n        const cells = this.querySelectorAll(\"td\");\n        cells.forEach(this.handleCellListeners.bind(this));\n        this.editIndex = Array.from(cells).indexOf(tr.children[0]);\n        this.onNext();\n    }\n    onEdit() {\n        const cells = this.querySelectorAll(\"td\");\n        if (!this.savedState) {\n            this.savedState = JSON.parse(JSON.stringify(this.state));\n        }\n        cells.forEach(this.handleCellListeners.bind(this));\n        this.onNext();\n    }\n    onReadOnly() {\n        const cells = this.querySelectorAll(\"td\");\n        cells.forEach((td) => {\n            td.setAttribute(\"readonly\", \"true\");\n        });\n        if (this.savedState) {\n            this.renderRows(this.savedState);\n            this.savedState = undefined;\n        }\n        this.editIndex = 0;\n    }\n    onSave() {\n        const data = this.state; // data object of table rows.\n        if (this.querySelectorAll(\"td\")[this.editIndex]) {\n            this.querySelectorAll(\"td\")[this.editIndex].setAttribute(\"readonly\", \"true\");\n        }\n        this.savedState = undefined;\n        this.editIndex = 0;\n        this.channel.postMessage({\n            type: \"change\",\n            detail: data\n        });\n        this.renderRows(data);\n    }\n    onTableData(next) {\n        this.renderHeader(next.columnData);\n        this.renderRows(next.rowData);\n    }\n    renderRows(rows) {\n        this.$body.innerHTML = \"\";\n        rows.forEach((rowData) => {\n            const tr = document.createElement(\"tr\", { is: \"in-tr\" });\n            this.columnData.forEach((colData) => {\n                const td = document.createElement(\"td\", { is: \"in-td\" });\n                td.setAttribute(\"value\", rowData[colData.property]);\n                td.setAttribute(\"data-property\", colData.property);\n                td.setAttribute(\"readonly\", \"true\");\n                tr.appendChild(td);\n            });\n            this.createDeleteButton(tr);\n            this.$body.appendChild(tr);\n            const renderedData = new CustomEvent(\"data\", {\n                detail: rowData\n            });\n            tr.dispatchEvent(renderedData);\n        });\n    }\n    renderHeader(cols) {\n        this.columnData = cols.sort((a, b) => a.index - b.index);\n        const tr = document.createElement(\"tr\");\n        cols.forEach((colData) => {\n            const th = document.createElement(\"th\");\n            th.innerText = colData.label;\n            tr.appendChild(th);\n        });\n        this.$head.innerHTML = \"\";\n        this.$head.appendChild(tr);\n    }\n    createDeleteButton(tr) {\n        const deleteButtonTd = document.createElement(\"td\");\n        deleteButtonTd.classList.add(\"delete-cell\");\n        deleteButtonTd.setAttribute(\"readonly\", \"true\");\n        deleteButtonTd.innerHTML = `\n            <button class=\"icon icon-trash\" is=\"in-button\">\n                <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 448 512\">\n                    <path fill=\"currentColor\"\n                     d=\"M268 416h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12zM432 80h-82.41l-34-56.7A48 48 0 0 0 274.41 0H173.59a48 48 0 0 0-41.16 23.3L98.41 80H16A16 16 0 0 0 0 96v16a16 16 0 0 0 16 16h16v336a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128h16a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16zM171.84 50.91A6 6 0 0 1 177 48h94a6 6 0 0 1 5.15 2.91L293.61 80H154.39zM368 464H80V128h288zm-212-48h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12z\"></path>\n                </svg>\n            </button>\n        `;\n        tr.appendChild(deleteButtonTd);\n    }\n}",
+          "description": "Renders a stylized `HTMLTableElement` that can display read-only or editable.\n`TableComponent` is a customized built-in element that renders columns and rows through events dispatched on `BroadcastChannel`."
         },
         {
           "kind": "variable",
           "name": "TdComponent",
-          "default": "class TdComponent extends HTMLTableCellElement {\n    constructor() {\n        super();\n        attachTemplate(this);\n    }\n    connectedCallback() {\n        attachStyle(this);\n    }\n    get $readOnly() {\n        return this.querySelector(.td-readonly);\n    }\n    get $input() {\n        return this.querySelector(in-textinput);\n    }\n    get $inputContainer() {\n        return this.querySelector(.td-input);\n    }\n    static get observedAttributes() {\n        return ['value', 'readonly'];\n    }\n    attributeChangedCallback(name, prev, next) {\n        switch (name) {\n            case value:\n                this.setValue(next);\n                break;\n            case readonly:\n                this.setMode(next === true);\n                break;\n        }\n    }\n    setMode(readOnly) {\n        if (readOnly) {\n            this.$readOnly.removeAttribute(hidden);\n            this.$inputContainer.setAttribute(hidden, true);\n        }\n        else {\n            this.$readOnly.setAttribute(hidden, true);\n            this.$inputContainer.removeAttribute(hidden);\n        }\n    }\n    setValue(value) {\n        this.$readOnly.innerText = value;\n    }\n}"
+          "default": "class TdComponent extends HTMLTableCellElement {\n    constructor() {\n        super();\n        attachTemplate(this);\n    }\n    connectedCallback() {\n        attachStyle(this);\n    }\n    get $readOnly() {\n        return this.querySelector(\".td-readonly\");\n    }\n    get $input() {\n        return this.querySelector(\"in-textinput\");\n    }\n    get $inputContainer() {\n        return this.querySelector(\".td-input\");\n    }\n    static get observedAttributes() {\n        return ['value', 'readonly'];\n    }\n    attributeChangedCallback(name, prev, next) {\n        switch (name) {\n            case \"value\":\n                this.setValue(next);\n                break;\n            case \"readonly\":\n                this.setMode(next === \"true\");\n                break;\n        }\n    }\n    setMode(readOnly) {\n        if (readOnly) {\n            this.$readOnly.removeAttribute(\"hidden\");\n            this.$inputContainer.setAttribute(\"hidden\", \"true\");\n        }\n        else {\n            this.$readOnly.setAttribute(\"hidden\", \"true\");\n            this.$inputContainer.removeAttribute(\"hidden\");\n        }\n    }\n    setValue(value) {\n        this.$readOnly.innerText = value;\n    }\n}"
         },
         {
           "kind": "variable",
@@ -339,7 +317,8 @@
         {
           "kind": "variable",
           "name": "TableCardComponent",
-          "default": "class TableCardComponent extends HTMLElement {\n    constructor() {\n        super();\n        attachShadow(this);\n    }\n    static get observedAttributes() {\n        return [\n            channel\n        ];\n    }\n    attributeChangedCallback(name, prev, next) {\n        switch (name) {\n            case 'channel':\n                this.channel = new BroadcastChannel(next);\n                this.$table.setAttribute('channel', next);\n                break;\n        }\n    }\n    get $table() {\n        return this.shadowRoot.querySelector(table);\n    }\n    get $editButton() {\n        return this.shadowRoot.querySelector(.button-edit);\n    }\n    get $saveButton() {\n        return this.shadowRoot.querySelector(.button-save);\n    }\n    get $cancelButton() {\n        return this.shadowRoot.querySelector(.button-cancel);\n    }\n    get $addButton() {\n        return this.shadowRoot.querySelector(.button-add);\n    }\n    add() {\n        this.$addButton.blur();\n        this.$editButton.setAttribute(hidden, true);\n        this.$saveButton.removeAttribute(hidden);\n        this.$cancelButton.removeAttribute(hidden);\n        this.channel.postMessage({\n            type: add\n        });\n    }\n    editMode() {\n        this.$editButton.setAttribute(hidden, true);\n        this.$saveButton.removeAttribute(hidden);\n        this.$cancelButton.removeAttribute(hidden);\n        this.channel.postMessage({\n            type: 'edit'\n        });\n    }\n    readOnlyMode() {\n        this.$editButton.removeAttribute(hidden);\n        this.$saveButton.setAttribute(hidden, true);\n        this.$cancelButton.setAttribute(hidden, true);\n        this.channel.postMessage({\n            type: 'readonly'\n        });\n    }\n    save() {\n        this.channel.postMessage({\n            type: save\n        });\n        this.readOnlyMode(); //\n    }\n}"
+          "default": "class TableCardComponent extends HTMLElement {\n    constructor() {\n        super();\n        attachShadow(this);\n    }\n    static get observedAttributes() {\n        return [\n            \"channel\"\n        ];\n    }\n    attributeChangedCallback(name, prev, next) {\n        switch (name) {\n            case 'channel':\n                this.channel = new BroadcastChannel(next);\n                this.$table.setAttribute('channel', next);\n                break;\n        }\n    }\n    get $table() {\n        return this.shadowRoot.querySelector(\"table\");\n    }\n    get $editButton() {\n        return this.shadowRoot.querySelector(\".button-edit\");\n    }\n    get $saveButton() {\n        return this.shadowRoot.querySelector(\".button-save\");\n    }\n    get $cancelButton() {\n        return this.shadowRoot.querySelector(\".button-cancel\");\n    }\n    get $addButton() {\n        return this.shadowRoot.querySelector(\".button-add\");\n    }\n    add() {\n        this.$addButton.blur();\n        this.$editButton.setAttribute(\"hidden\", \"true\");\n        this.$saveButton.removeAttribute(\"hidden\");\n        this.$cancelButton.removeAttribute(\"hidden\");\n        this.channel.postMessage({\n            type: \"add\"\n        });\n    }\n    editMode() {\n        this.$editButton.setAttribute(\"hidden\", \"true\");\n        this.$saveButton.removeAttribute(\"hidden\");\n        this.$cancelButton.removeAttribute(\"hidden\");\n        this.channel.postMessage({\n            type: 'edit'\n        });\n    }\n    readOnlyMode() {\n        this.$editButton.removeAttribute(\"hidden\");\n        this.$saveButton.setAttribute(\"hidden\", \"true\");\n        this.$cancelButton.setAttribute(\"hidden\", \"true\");\n        this.channel.postMessage({\n            type: 'readonly'\n        });\n    }\n    save() {\n        this.channel.postMessage({\n            type: \"save\"\n        });\n        this.readOnlyMode(); //\n    }\n}",
+          "description": "Renders a `TableComponent` in a stylized card\nthat displays buttons used for CRUD in the table."
         }
       ],
       "exports": [
@@ -465,7 +444,7 @@
           "name": "ButtonComponent",
           "declaration": {
             "name": "ButtonComponent",
-            "module": "./src/button"
+            "module": "\"./src/button\""
           }
         },
         {
@@ -473,7 +452,7 @@
           "name": "CardComponent",
           "declaration": {
             "name": "CardComponent",
-            "module": "./src/card"
+            "module": "\"./src/card\""
           }
         },
         {
@@ -481,7 +460,7 @@
           "name": "DialogComponent",
           "declaration": {
             "name": "DialogComponent",
-            "module": "./src/dialog"
+            "module": "\"./src/dialog\""
           }
         },
         {
@@ -489,7 +468,7 @@
           "name": "DialogStack",
           "declaration": {
             "name": "DialogStack",
-            "module": "./src/dialog"
+            "module": "\"./src/dialog\""
           }
         },
         {
@@ -497,7 +476,7 @@
           "name": "ModalComponent",
           "declaration": {
             "name": "ModalComponent",
-            "module": "./src/dialog"
+            "module": "\"./src/dialog\""
           }
         },
         {
@@ -505,7 +484,7 @@
           "name": "TooltipComponent",
           "declaration": {
             "name": "TooltipComponent",
-            "module": "./src/dialog"
+            "module": "\"./src/dialog\""
           }
         },
         {
@@ -513,7 +492,7 @@
           "name": "Validator",
           "declaration": {
             "name": "Validator",
-            "module": "./src/input"
+            "module": "\"./src/input\""
           }
         },
         {
@@ -521,7 +500,7 @@
           "name": "validate",
           "declaration": {
             "name": "validate",
-            "module": "./src/input"
+            "module": "\"./src/input\""
           }
         },
         {
@@ -529,7 +508,7 @@
           "name": "TextInputComponent",
           "declaration": {
             "name": "TextInputComponent",
-            "module": "./src/input"
+            "module": "\"./src/input\""
           }
         },
         {
@@ -537,7 +516,7 @@
           "name": "TableCardComponent",
           "declaration": {
             "name": "TableCardComponent",
-            "module": "./src/table"
+            "module": "\"./src/table\""
           }
         },
         {
@@ -545,7 +524,7 @@
           "name": "TableComponent",
           "declaration": {
             "name": "TableComponent",
-            "module": "./src/table"
+            "module": "\"./src/table\""
           }
         },
         {
@@ -553,7 +532,7 @@
           "name": "TrComponent",
           "declaration": {
             "name": "TrComponent",
-            "module": "./src/table"
+            "module": "\"./src/table\""
           }
         },
         {
@@ -561,7 +540,7 @@
           "name": "TdComponent",
           "declaration": {
             "name": "TdComponent",
-            "module": "./src/table"
+            "module": "\"./src/table\""
           }
         },
         {
@@ -569,7 +548,7 @@
           "name": "Column",
           "declaration": {
             "name": "Column",
-            "module": "./src/table"
+            "module": "\"./src/table\""
           }
         },
         {
@@ -577,7 +556,7 @@
           "name": "ColumnData",
           "declaration": {
             "name": "ColumnData",
-            "module": "./src/table"
+            "module": "\"./src/table\""
           }
         }
       ]
@@ -651,21 +630,21 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "Renders a button.",
+          "description": "Customized built-in element that renders a styled button.\n\n`ButtonComponent` is displayed contextually as one of three variants: primary, secondary or icon. The variant is set using a CSS classname. The label is set via the content of the `HTMLButtonElement`. When displayed as the icon variant, ButtonComponent expects two direct children: `HTMLSVGElement` and `HTMLSpanElement` that displays a label exclusively for screen readers using the `hidden` HTML attribute.",
           "name": "ButtonComponent",
           "attributes": [
             {
               "type": {
                 "text": "string"
               },
-              "description": "in-button, Required",
+              "description": "\"in-button\", Required",
               "name": "is"
             },
             {
               "type": {
                 "text": "string"
               },
-              "description": "Variant, can either be primary, secondary, or icon",
+              "description": "Variant, can either be \"primary\" \"secondary\", or \"icon\"",
               "name": "class"
             }
           ],
@@ -698,7 +677,7 @@
           "name": "ButtonComponent",
           "declaration": {
             "name": "ButtonComponent",
-            "module": "./Button"
+            "module": "\"./Button\""
           }
         }
       ]
@@ -736,11 +715,35 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "",
+          "description": "Autonomous custom element that renders a card container.\n`CardComponent` displays content in a header, content, footer layout.",
           "name": "CardComponent",
+          "slots": [
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "displays header elements",
+              "name": "header"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "displays content in between header and footer",
+              "name": "content"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "displays footer elements",
+              "name": "footer"
+            }
+          ],
           "superclass": {
             "name": "HTMLElement"
           },
+          "tagName": "in-card",
           "customElement": true
         }
       ],
@@ -765,7 +768,7 @@
           "name": "CardComponent",
           "declaration": {
             "name": "CardComponent",
-            "module": "./Card"
+            "module": "\"./Card\""
           }
         }
       ]
@@ -803,7 +806,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "",
+          "description": "Controller for rendering a dialog from HTML template.\n\n`DialogComponent` requires an instance of `DialogStack` to be set on `window.__dialogStack` prior to instantiation. After specifying a `template`, `target`, and `variant` with HTML attributes, `DialogComponent` will display either a modal or tooltip that renders a HTML template.",
           "name": "DialogComponent",
           "members": [
             {
@@ -818,7 +821,7 @@
               "kind": "field",
               "name": "$state",
               "type": {
-                "text": "open | close"
+                "text": "\"open\" | \"close\""
               },
               "privacy": "public"
             },
@@ -842,7 +845,7 @@
               "kind": "field",
               "name": "$variant",
               "type": {
-                "text": "modal | tooltip"
+                "text": "\"modal\" | \"tooltip\""
               },
               "privacy": "public"
             },
@@ -897,18 +900,31 @@
           ],
           "attributes": [
             {
-              "name": "target"
+              "name": "target",
+              "type": {
+                "text": "string"
+              },
+              "description": "Selector that targets the HTML element that triggers the dialog on click, for use with `querySelector`, Required"
             },
             {
-              "name": "template"
+              "name": "template",
+              "type": {
+                "text": "string"
+              },
+              "description": "Required, Selector that targets the HTML template, for use with `querySelector`."
             },
             {
-              "name": "variant"
+              "name": "variant",
+              "type": {
+                "text": "string"
+              },
+              "description": "Specifies whether to display a \"modal\" or \"tooltip\", Required"
             }
           ],
           "superclass": {
             "name": "HTMLElement"
           },
+          "tagName": "in-dialog",
           "customElement": true
         }
       ],
@@ -1166,7 +1182,7 @@
           "name": "DialogStack",
           "declaration": {
             "name": "DialogStack",
-            "module": "./DialogStack"
+            "module": "\"./DialogStack\""
           }
         },
         {
@@ -1174,7 +1190,7 @@
           "name": "DialogComponent",
           "declaration": {
             "name": "DialogComponent",
-            "module": "./Dialog"
+            "module": "\"./Dialog\""
           }
         },
         {
@@ -1182,7 +1198,7 @@
           "name": "ModalComponent",
           "declaration": {
             "name": "ModalComponent",
-            "module": "./Modal"
+            "module": "\"./Modal\""
           }
         },
         {
@@ -1190,7 +1206,7 @@
           "name": "TooltipComponent",
           "declaration": {
             "name": "TooltipComponent",
-            "module": "./Tooltip"
+            "module": "\"./Tooltip\""
           }
         }
       ]
@@ -1264,7 +1280,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "",
+          "description": "Renders an input element.",
           "name": "TextInputComponent",
           "members": [
             {
@@ -1470,45 +1486,93 @@
           ],
           "attributes": [
             {
-              "name": "name"
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "Name of the form control. Submitted with the form as part of a name/value pair"
             },
             {
-              "name": "type"
+              "name": "type",
+              "type": {
+                "text": "string"
+              },
+              "description": "Type of form control"
             },
             {
-              "name": "required"
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "description": " A value is required or must be check for the form to be submittable"
             },
             {
-              "name": "minlength"
+              "name": "minlength",
+              "type": {
+                "text": "string"
+              },
+              "description": "Minimum length (number of characters) of value"
             },
             {
-              "name": "maxlength"
+              "name": "maxlength",
+              "type": {
+                "text": "string"
+              },
+              "description": "Maximum length (number of characters) of value"
             },
             {
-              "name": "pattern"
+              "name": "pattern",
+              "type": {
+                "text": "string"
+              },
+              "description": "Pattern the value must match to be valid"
             },
             {
-              "name": "list"
+              "name": "list",
+              "type": {
+                "text": "string"
+              },
+              "description": "Value of the id attribute of the <datalist> of autocomplete options"
             },
             {
-              "name": "placeholder"
+              "name": "placeholder",
+              "type": {
+                "text": "string"
+              },
+              "description": "Text that appears in the form control when it has no value set"
             },
             {
-              "name": "readonly"
+              "name": "readonly",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "The value is not editable"
             },
             {
-              "name": "spellcheck"
+              "name": "spellcheck",
+              "type": {
+                "text": "string"
+              },
+              "description": "Defines whether the element may be checked for spelling errors."
             },
             {
               "name": "value"
             },
             {
               "name": "disabled"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "Size of the control",
+              "name": "size"
             }
           ],
           "superclass": {
             "name": "HTMLElement"
           },
+          "tagName": "in-textinput",
           "customElement": true
         }
       ],
@@ -1533,7 +1597,7 @@
           "name": "TextInputComponent",
           "declaration": {
             "name": "TextInputComponent",
-            "module": "./TextInput"
+            "module": "\"./TextInput\""
           }
         },
         {
@@ -1541,7 +1605,7 @@
           "name": "Validator",
           "declaration": {
             "name": "Validator",
-            "module": "./validator"
+            "module": "\"./validator\""
           }
         },
         {
@@ -1549,7 +1613,7 @@
           "name": "validate",
           "declaration": {
             "name": "validate",
-            "module": "./validator"
+            "module": "\"./validator\""
           }
         }
       ]
@@ -1621,7 +1685,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "",
+          "description": "Renders a stylized `HTMLTableElement` that can display read-only or editable.\n`TableComponent` is a customized built-in element that renders columns and rows through events dispatched on `BroadcastChannel`.",
           "name": "TableComponent",
           "members": [
             {
@@ -1772,7 +1836,18 @@
           ],
           "attributes": [
             {
-              "name": "channel"
+              "name": "channel",
+              "type": {
+                "text": "string"
+              },
+              "description": "the name of the channel used to communicate via `BroadcastChannel`, Required"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "\"in-table\", Required",
+              "name": "is"
             }
           ],
           "superclass": {
@@ -1798,7 +1873,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "",
+          "description": "Renders a `TableComponent` in a stylized card\nthat displays buttons used for CRUD in the table.",
           "name": "TableCardComponent",
           "members": [
             {
@@ -1863,12 +1938,17 @@
           ],
           "attributes": [
             {
-              "name": "channel"
+              "name": "channel",
+              "type": {
+                "text": "string"
+              },
+              "description": "the name of the channel used to communicate via `BroadcastChannel`, Required"
             }
           ],
           "superclass": {
             "name": "HTMLElement"
           },
+          "tagName": "in-tablecard",
           "customElement": true
         }
       ],
@@ -2036,7 +2116,7 @@
           "name": "TableComponent",
           "declaration": {
             "name": "TableComponent",
-            "module": "./Table"
+            "module": "\"./Table\""
           }
         },
         {
@@ -2044,7 +2124,7 @@
           "name": "Column",
           "declaration": {
             "name": "Column",
-            "module": "./Table"
+            "module": "\"./Table\""
           }
         },
         {
@@ -2052,7 +2132,7 @@
           "name": "ColumnData",
           "declaration": {
             "name": "ColumnData",
-            "module": "./Table"
+            "module": "\"./Table\""
           }
         },
         {
@@ -2060,7 +2140,7 @@
           "name": "TdComponent",
           "declaration": {
             "name": "TdComponent",
-            "module": "./Td"
+            "module": "\"./Td\""
           }
         },
         {
@@ -2068,7 +2148,7 @@
           "name": "TrComponent",
           "declaration": {
             "name": "TrComponent",
-            "module": "./Tr"
+            "module": "\"./Tr\""
           }
         },
         {
@@ -2076,7 +2156,7 @@
           "name": "TableCardComponent",
           "declaration": {
             "name": "TableCardComponent",
-            "module": "./TableCard"
+            "module": "\"./TableCard\""
           }
         }
       ]
@@ -2087,21 +2167,21 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "Renders a button.",
+          "description": "Customized built-in element that renders a styled button.\n\n`ButtonComponent` is displayed contextually as one of three variants: primary, secondary or icon. The variant is set using a CSS classname. The label is set via the content of the `HTMLButtonElement`. When displayed as the icon variant, ButtonComponent expects two direct children: `HTMLSVGElement` and `HTMLSpanElement` that displays a label exclusively for screen readers using the `hidden` HTML attribute.",
           "name": "ButtonComponent",
           "attributes": [
             {
               "type": {
                 "text": "string"
               },
-              "description": "in-button, Required",
+              "description": "\"in-button\", Required",
               "name": "is"
             },
             {
               "type": {
                 "text": "string"
               },
-              "description": "Variant, can either be primary, secondary, or icon",
+              "description": "Variant, can either be \"primary\" \"secondary\", or \"icon\"",
               "name": "class"
             }
           ],
@@ -2134,7 +2214,7 @@
           "name": "ButtonComponent",
           "declaration": {
             "name": "ButtonComponent",
-            "module": "./Button"
+            "module": "\"./Button\""
           }
         }
       ]
@@ -2145,11 +2225,35 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "",
+          "description": "Autonomous custom element that renders a card container.\n`CardComponent` displays content in a header, content, footer layout.",
           "name": "CardComponent",
+          "slots": [
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "displays header elements",
+              "name": "header"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "displays content in between header and footer",
+              "name": "content"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "displays footer elements",
+              "name": "footer"
+            }
+          ],
           "superclass": {
             "name": "HTMLElement"
           },
+          "tagName": "in-card",
           "customElement": true
         }
       ],
@@ -2174,7 +2278,7 @@
           "name": "CardComponent",
           "declaration": {
             "name": "CardComponent",
-            "module": "./Card"
+            "module": "\"./Card\""
           }
         }
       ]
@@ -2185,7 +2289,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "",
+          "description": "Controller for rendering a dialog from HTML template.\n\n`DialogComponent` requires an instance of `DialogStack` to be set on `window.__dialogStack` prior to instantiation. After specifying a `template`, `target`, and `variant` with HTML attributes, `DialogComponent` will display either a modal or tooltip that renders a HTML template.",
           "name": "DialogComponent",
           "members": [
             {
@@ -2199,7 +2303,7 @@
               "kind": "field",
               "name": "$state",
               "type": {
-                "text": "open | close"
+                "text": "\"open\" | \"close\""
               }
             },
             {
@@ -2220,7 +2324,7 @@
               "kind": "field",
               "name": "$variant",
               "type": {
-                "text": "modal | tooltip"
+                "text": "\"modal\" | \"tooltip\""
               }
             },
             {
@@ -2291,9 +2395,33 @@
               }
             }
           ],
+          "attributes": [
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "Required, Selector that targets the HTML template, for use with `querySelector`.",
+              "name": "template"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "Selector that targets the HTML element that triggers the dialog on click, for use with `querySelector`, Required",
+              "name": "target"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "Specifies whether to display a \"modal\" or \"tooltip\", Required",
+              "name": "variant"
+            }
+          ],
           "superclass": {
             "name": "HTMLElement"
           },
+          "tagName": "in-dialog",
           "customElement": true
         }
       ],
@@ -2599,7 +2727,7 @@
           "name": "DialogStack",
           "declaration": {
             "name": "DialogStack",
-            "module": "./DialogStack"
+            "module": "\"./DialogStack\""
           }
         },
         {
@@ -2607,7 +2735,7 @@
           "name": "DialogComponent",
           "declaration": {
             "name": "DialogComponent",
-            "module": "./Dialog"
+            "module": "\"./Dialog\""
           }
         },
         {
@@ -2615,7 +2743,7 @@
           "name": "ModalComponent",
           "declaration": {
             "name": "ModalComponent",
-            "module": "./Modal"
+            "module": "\"./Modal\""
           }
         },
         {
@@ -2623,7 +2751,7 @@
           "name": "TooltipComponent",
           "declaration": {
             "name": "TooltipComponent",
-            "module": "./Tooltip"
+            "module": "\"./Tooltip\""
           }
         }
       ]
@@ -2634,7 +2762,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "",
+          "description": "Renders an input element.",
           "name": "TextInputComponent",
           "members": [
             {
@@ -2910,9 +3038,89 @@
               ]
             }
           ],
+          "attributes": [
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "Name of the form control. Submitted with the form as part of a name/value pair",
+              "name": "name"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "Type of form control",
+              "name": "type"
+            },
+            {
+              "type": {
+                "text": "boolean"
+              },
+              "description": " A value is required or must be check for the form to be submittable",
+              "name": "required"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "Minimum length (number of characters) of value",
+              "name": "minlength"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "Maximum length (number of characters) of value",
+              "name": "maxlength"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "Pattern the value must match to be valid",
+              "name": "pattern"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "Value of the id attribute of the <datalist> of autocomplete options",
+              "name": "list"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "Text that appears in the form control when it has no value set",
+              "name": "placeholder"
+            },
+            {
+              "type": {
+                "text": "boolean"
+              },
+              "description": "The value is not editable",
+              "name": "readonly"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "Size of the control",
+              "name": "size"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "Defines whether the element may be checked for spelling errors.",
+              "name": "spellcheck"
+            }
+          ],
           "superclass": {
             "name": "HTMLElement"
           },
+          "tagName": "in-textinput",
           "customElement": true
         }
       ],
@@ -2937,7 +3145,7 @@
           "name": "TextInputComponent",
           "declaration": {
             "name": "TextInputComponent",
-            "module": "./TextInput"
+            "module": "\"./TextInput\""
           }
         },
         {
@@ -2945,7 +3153,7 @@
           "name": "Validator",
           "declaration": {
             "name": "Validator",
-            "module": "./validator"
+            "module": "\"./validator\""
           }
         },
         {
@@ -2953,7 +3161,7 @@
           "name": "validate",
           "declaration": {
             "name": "validate",
-            "module": "./validator"
+            "module": "\"./validator\""
           }
         }
       ]
@@ -3003,7 +3211,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "",
+          "description": "Renders a stylized `HTMLTableElement` that can display read-only or editable.\n`TableComponent` is a customized built-in element that renders columns and rows through events dispatched on `BroadcastChannel`.",
           "name": "TableComponent",
           "members": [
             {
@@ -3206,6 +3414,22 @@
               ]
             }
           ],
+          "attributes": [
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "the name of the channel used to communicate via `BroadcastChannel`, Required",
+              "name": "channel"
+            },
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "\"in-table\", Required",
+              "name": "is"
+            }
+          ],
           "superclass": {
             "name": "HTMLTableElement",
             "module": "dist/types/src/table/Table.d.ts"
@@ -3229,7 +3453,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "",
+          "description": "Renders a `TableComponent` in a stylized card\nthat displays buttons used for CRUD in the table.",
           "name": "TableCardComponent",
           "members": [
             {
@@ -3309,9 +3533,19 @@
               }
             }
           ],
+          "attributes": [
+            {
+              "type": {
+                "text": "string"
+              },
+              "description": "the name of the channel used to communicate via `BroadcastChannel`, Required",
+              "name": "channel"
+            }
+          ],
           "superclass": {
             "name": "HTMLElement"
           },
+          "tagName": "in-tablecard",
           "customElement": true
         }
       ],
@@ -3495,7 +3729,7 @@
           "name": "TableComponent",
           "declaration": {
             "name": "TableComponent",
-            "module": "./Table"
+            "module": "\"./Table\""
           }
         },
         {
@@ -3503,7 +3737,7 @@
           "name": "Column",
           "declaration": {
             "name": "Column",
-            "module": "./Table"
+            "module": "\"./Table\""
           }
         },
         {
@@ -3511,7 +3745,7 @@
           "name": "ColumnData",
           "declaration": {
             "name": "ColumnData",
-            "module": "./Table"
+            "module": "\"./Table\""
           }
         },
         {
@@ -3519,7 +3753,7 @@
           "name": "TdComponent",
           "declaration": {
             "name": "TdComponent",
-            "module": "./Td"
+            "module": "\"./Td\""
           }
         },
         {
@@ -3527,7 +3761,7 @@
           "name": "TrComponent",
           "declaration": {
             "name": "TrComponent",
-            "module": "./Tr"
+            "module": "\"./Tr\""
           }
         },
         {
@@ -3535,7 +3769,7 @@
           "name": "TableCardComponent",
           "declaration": {
             "name": "TableCardComponent",
-            "module": "./TableCard"
+            "module": "\"./TableCard\""
           }
         }
       ]

@@ -1,6 +1,7 @@
 import { CardComponent } from "./Card";
 
 export default {
+    component: "in-card",
     title: "Components/Card",
     argTypes: {
         image: {
