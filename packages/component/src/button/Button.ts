@@ -81,7 +81,12 @@ const buttonStyles = css`
         cursor: default;
     }
 `;
-
+/**
+ * Renders a button.
+ * @tag {string} in-button
+ * @attr {string} is - "in-button", Required
+ * @attr {string} class - Variant, can either be "primary", "secondary", or "icon"
+ */
 @Component({
     selector: "in-button",
     style: buttonStyles,
